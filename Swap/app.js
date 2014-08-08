@@ -29,8 +29,11 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
-app.get('/', routes.index);
-app.get('/users', user.list);
+app.get("/", routes.index);
+app.get("/users", user.list);
+app.get("/temp", function (req,res) {
+    res.send("This text UPDATED, but will this update realtime");
+});
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
