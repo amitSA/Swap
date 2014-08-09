@@ -4,8 +4,6 @@
  */
 
 var express = require('express');
-var routes = require('./routes');
-var user = require('./routes/user');
 var http = require('http');
 var path = require('path');
 
@@ -29,10 +27,16 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
+var routes = require('./routes/index');
+var user = require('./routes/user');
+
 app.get("/", routes.index);
 app.get("/users", user.list);
 app.get("/temp", function (req,res) {
-    res.send("This text UPDATED, but will this update realtime");
+    //res.send("This text UPDATED, but will this update realtime");
+    res.set('Content-Type', 'text/html');
+    var buf = new Buffer("This is a buffer stored in a variable");
+    res.send({title : buf});
 });
 
 http.createServer(app).listen(app.get('port'), function(){
