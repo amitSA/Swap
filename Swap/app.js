@@ -6,7 +6,6 @@
 var express = require('express');
 var http = require('http');
 var path = require('path');
-
 var app = express();
 module.exports = app;
 
@@ -41,8 +40,6 @@ http.createServer(app).listen(app.get('port'), function(){
 /*
 
 app.get("/", routes.index);
-
-
 
 app.get("/users", user.list);
 app.get("/temp", function (req,res) {
