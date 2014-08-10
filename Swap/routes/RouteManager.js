@@ -5,7 +5,7 @@
 
 var app = require("../app");
 
-app.get("/", function (req, res) {
+app.get(/\/?(users)?\/(\d+)/, function (req, res) {
     res.render("index", {title: "Swap"});
 });
 
