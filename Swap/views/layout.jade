@@ -1,7 +1,14 @@
 ﻿doctype html
 html
   head
-    title= title
-    link(rel='stylesheet', href='/stylesheets/style.css')
+    meta(charset='UTF-8')
+    title Swap
+    meta(name='HandheldFriendly', content='True')
+    meta(name='MobileOptimized', content='320')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0 maximum-scale=1.0, user-scalable=no')
+    link(rel='stylesheet', href='/public/stylesheets/bootstrap.css')
+    link(rel='stylesheet', href='/public/stylesheets/main.css')
+    link(rel='stylesheet', href='/public/stylesheets/index.css')
   body
+    p= title
     block content

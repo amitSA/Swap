@@ -8,6 +8,7 @@ var http = require('http');
 var path = require('path');
 
 var app = express();
+module.exports = app;
 
 // all environments
 app.set('port', process.env.PORT || 3000);
@@ -27,18 +28,25 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
-var routes = require('./routes/index');
-var user = require('./routes/user');
+require('./routes/RouteManager');
 
-app.get("/", routes.index);
-app.get("/users", user.list);
-app.get("/temp", function (req,res) {
-    //res.send("This text UPDATED, but will this update realtime");
-    res.set('Content-Type', 'text/html');
-    var buf = new Buffer("This is a buffer stored in a variable");
-    res.send({title : buf});
-});
+
+
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });
+
+
+/*
+
+app.get("/", routes.index);
+
+
+
+app.get("/users", user.list);
+app.get("/temp", function (req,res) {
+    //res.send("This text UPDATED, but will this update realtime");
+    //res.set('Content-Type', 'text/html');
+    
+});*/
