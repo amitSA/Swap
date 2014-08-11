@@ -4,9 +4,11 @@
  */
 
 var app = require("../app");
+var express = require('express');
 
-app.get(/\/?(users)?\/(\d+)/, function (req, res) {
-    res.render("index", {title: "Swap"});
+
+app.get(/\/(w*)/, function (req, res) {
+    res.render("index", {title: req.params[0]});
 });
 
 
@@ -14,3 +16,5 @@ app.get(/\/?(users)?\/(\d+)/, function (req, res) {
 module.exports.index = function(req, res){
   res.render('index', { title: 'Express' });
 };*/
+
+//  \/(users)\/:digit/

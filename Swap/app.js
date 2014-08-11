@@ -13,6 +13,8 @@ module.exports = app;
 app.set('port', process.env.PORT || 3000);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
+
+//middleware
 app.use(express.favicon());
 app.use(express.logger('dev'));
 app.use(express.json());
@@ -28,8 +30,6 @@ if ('development' == app.get('env')) {
 }
 
 require('./routes/RouteManager');
-
-
 
 
 http.createServer(app).listen(app.get('port'), function(){

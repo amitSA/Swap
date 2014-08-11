@@ -35,6 +35,7 @@
     <Compile Include="routes\user.js" />
     <Content Include="package.json" />
     <Content Include="public\static\planningDoc.html" />
+    <Content Include="public\stylesheets\custom.css" />
     <Content Include="public\stylesheets\style.styl" />
     <Content Include="README.md" />
     <Content Include="views\index.jade" />
