@@ -6,7 +6,13 @@ html
     meta(name='HandheldFriendly', content='True')
     meta(name='MobileOptimized', content='320')
     meta(name='viewport', content='width=device-width, initial-scale=1.0 maximum-scale=1.0, user-scalable=no')
-    link(rel='stylesheet', href='/stylesheets/bootstrap.css')
+    link(rel='stylesheet', href='/stylesheets/bstrap/bootstrap.css')
 
   body
     block content
+
+
+    block jsFiles
+        script(src='/javascripts/jquery-1.11.1.js')
+        script(src='/javascripts/bootstrap.js')
+
