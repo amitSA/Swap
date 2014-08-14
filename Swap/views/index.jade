@@ -1,6 +1,6 @@
 ﻿extends layout
 
-block content
+block append content
     div.container
      div.header
        div.nav.nav-pills.pull-left
@@ -13,18 +13,27 @@ block content
     div.container
       div.col-md-offset-4.col-md-4
          ul.nav.nav-tabs(role = "tablist")
-           li.active
-             a(href = "/") Login
-           li
-             a(href = "/") Sign Up
+            li.active
+                a(href = "#login") Login
+            li
+                a(href = "#signup") Sign Up
+         div.tab-content
+           div.tab-pane.in.active#login
+               p Login
+           div.tab-pane.in#signup
+               p Sign Up
+            
+      
+       
+block append jsFiles
+   script(src = "/javascripts/testJSFile.js")
+     
+     
+       
 
 
 
-    //  <ul class="nav nav-tabs" role="tablist">
-        <li class="active"><a href="#">Home</a></li>
-        <li><a href="#">Profile</a></li>
-        <li><a href="#">Messages</a></li>
-        </ul>
+
   
     
     

@@ -33,6 +33,7 @@
     <Compile Include="app.js" />
     <Compile Include="public\javascripts\bootstrap.js" />
     <Compile Include="public\javascripts\bootstrap.min.js" />
+    <Compile Include="public\javascripts\testJSfile.js" />
     <Compile Include="routes\RouteManager.js" />
     <Compile Include="routes\user.js" />
     <Content Include="package.json" />
