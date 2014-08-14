@@ -4,12 +4,12 @@
         $(this).addClass("active");
         var id = $(this).find("a").attr("href");
         
-
+        //does the jquery function return an array
         
 
         id = id.substring(1);
-        $("div[class=tab-content]").find("div").removeClass("active");
-        $("div[id="+id+"]").addClass("active");
+        $("div.tab-content").find("div").removeClass("active");
+        $("div#" + id).addClass("active");
     });
 });
 
