@@ -14,20 +14,21 @@ block append content
       div.col-md-offset-4.col-md-4
         div.tabbable
           ul.nav.nav-tabs(role = "tablist")
-             li.active(data-toggle="tab")
-                 a(href = "#login") Login
-             li(data-toggle="tab")
-                 a(href = "#signup") Sign Up
+             li.active
+                 a(data-target = "#login" data-toggle="tab") Login
+             li
+                 a(data-target = "#signup" data-toggle="tab") Sign Up
           div.tab-content
-             div.tab-pane.in.active#login
+             div.tab-pane.in.active.fade#login
                 p Login
-             div.tab-pane.in#signup
+             div.tab-pane.in.fade#signup
                 p Sign Up
             
       
        
 block append jsFiles
-  // script(src = "/javascripts/testJSFile.js")
+   //script(src = "/javascripts/testJSFile.js")
+  
      
      
        
