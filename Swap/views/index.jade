@@ -12,21 +12,22 @@ block append content
 
     div.container
       div.col-md-offset-4.col-md-4
-         ul.nav(role = "tablist")
-            li.active
-                a(href = "#login") Login
-            li
-                a(href = "#signup") Sign Up
-         div.tab-content
-           div.tab-pane.in.active#login
-               p Login
-           div.tab-pane.in#signup
-               p Sign Up
+        div.tabbable
+          ul.nav.nav-tabs(role = "tablist")
+             li.active(data-toggle="tab")
+                 a(href = "#login") Login
+             li(data-toggle="tab")
+                 a(href = "#signup") Sign Up
+          div.tab-content
+             div.tab-pane.in.active#login
+                p Login
+             div.tab-pane.in#signup
+                p Sign Up
             
       
        
 block append jsFiles
-   script(src = "/javascripts/testJSFile.js")
+  // script(src = "/javascripts/testJSFile.js")
      
      
        
