@@ -1,5 +1,7 @@
 ﻿extends layout
 
+block append stylesheets
+
 block append content
     div.container
      div.header
@@ -7,9 +9,6 @@ block append content
          a(href = "/")
             img(src = "images/swaplogo.png", alt = "unloaded image").img-rounded
           
-         
-
-
     div.container
       div.col-md-offset-4.col-md-4
         div.tabbable
@@ -18,15 +17,31 @@ block append content
                  a(data-target = "#login" data-toggle="tab") Login
              li
                  a(data-target = "#signup" data-toggle="tab") Sign Up
+          br
           div.tab-content
              div.tab-pane.in.active.fade#login
-                p Login
+                form(role="form")
+                  div.form-group
+                    label(for="login-email") Email
+                    input#login-email.form-control(type="email" placeholder="Your email")
+                    br
+                    button.btn.btn-primary.btn-sm(type="submit")
+                      span.glyphicon.glyphicon-chevron-right 
+                      | Login   
              div.tab-pane.in.fade#signup
-                p Sign Up
+                form(role="form")
+                  div.form-group
+                    label(for="signup-name") Name
+                    input#signup-name.form-control(type="text" placeholder="Your public name")
+                    br
+                    label(for="signup-email") Email
+                    input#signup-email.form-control(type="email" placeholder="Your email")
+                    br
+                    button.btn.btn-primary.btn-sm(type="submit")
+                      span.glyphicon.glyphicon-chevron-right 
+                      | Sign In
             
-      
-       
-block append jsFiles
+block append scripts
    //script(src = "/javascripts/testJSFile.js")
   
      
