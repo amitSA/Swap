@@ -14,28 +14,28 @@ block append content
         div.tabbable
           ul.nav.nav-tabs(role = "tablist")
              li.active
-                 a(data-target = "#login" data-toggle="tab") Login
+                 a(data-target = "#login", data-toggle="tab") Login
              li
-                 a(data-target = "#signup" data-toggle="tab") Sign Up
+                 a(data-target = "#signup", data-toggle="tab") Sign Up
           br
           div.tab-content
              div.tab-pane.in.active.fade#login
                 form(role="form")
                   div.form-group
                     label(for="login-email") Email
-                    input#login-email.form-control(type="email" placeholder="Your email")
+                    input#login-email.form-control(type="email", placeholder="Your email")
                     br
                     button.btn.btn-primary.btn-sm(type="submit")
                       span.glyphicon.glyphicon-chevron-right 
                       | Login   
              div.tab-pane.in.fade#signup
-                form(role="form")
+                form(role="form", method="POST", action="/new/user")
                   div.form-group
                     label(for="signup-name") Name
-                    input#signup-name.form-control(type="text" placeholder="Your public name")
+                    input#signup-name.form-control(type="text", placeholder="Your public name")
                     br
                     label(for="signup-email") Email
-                    input#signup-email.form-control(type="email" placeholder="Your email")
+                    input#signup-email.form-control(type="email", placeholder="Your email")
                     br
                     button.btn.btn-primary.btn-sm(type="submit")
                       span.glyphicon.glyphicon-chevron-right 
