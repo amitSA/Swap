@@ -1,18 +1,19 @@
 {
-    "name": "Swap",
-    "version": "0.0.0",
-    "description": "Swap",
-    "main": "app.js",
-    "author": {
-        "name": "Amit",
-        "email": ""
-    },
-    "dependencies": {
-        "express": "^3.4.4",
-        "jade": "*",
-        "stylus": "*"
-    },
-    "devDependencies": { 
-        "nodemon":  "*"
-    }
+  "name": "Swap",
+  "version": "0.0.0",
+  "description": "Swap",
+  "main": "app.js",
+  "author": {
+    "name": "Amit",
+    "email": ""
+  },
+  "dependencies": {
+    "azure-storage": "^0.3.2",
+    "express": "^3.4.4",
+    "jade": "*",
+    "stylus": "*"
+  },
+  "devDependencies": {
+    "nodemon": "*"
+  }
 }
