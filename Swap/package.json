@@ -13,7 +13,5 @@
     "jade": "*",
     "stylus": "*"
   },
-  "devDependencies": {
-    "nodemon": "*"
-  }
+  "devDependencies": {}
 }

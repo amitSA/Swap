@@ -1,0 +1,11 @@
+﻿extends layout
+
+block content
+  ol
+     each entry in entries
+       li 
+         ul
+           li name : #{entry.name._} 
+           li email : #{entry.email._}  
+
+

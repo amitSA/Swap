@@ -10,7 +10,7 @@ block append content
             img(src = "images/swaplogo.png", alt = "unloaded image").img-rounded
           
     div.container
-      div.col-md-offset-4.col-md-4
+      div.col-xs-offset-4.col-md-4
         div.tabbable
           ul.nav.nav-tabs(role = "tablist")
              li.active
@@ -29,17 +29,19 @@ block append content
                       span.glyphicon.glyphicon-chevron-right 
                       | Login   
              div.tab-pane.in.fade#signup
-                form(role="form", method="POST", action="/new/user")
+                form(role="form", method="POST", action="/newuser")
                   div.form-group
                     label(for="signup-name") Name
-                    input#signup-name.form-control(type="text", placeholder="Your public name")
+                    input#signup-name.form-control(type="text", placeholder="Your public name", name="userName")
                     br
                     label(for="signup-email") Email
-                    input#signup-email.form-control(type="email", placeholder="Your email")
+                    input#signup-email.form-control(type="email", placeholder="Your email", name="email")
                     br
                     button.btn.btn-primary.btn-sm(type="submit")
                       span.glyphicon.glyphicon-chevron-right 
                       | Sign In
+                
+
             
 block append scripts
    //script(src = "/javascripts/testJSFile.js")
