@@ -1,11 +1,20 @@
 ﻿extends layout
 
 block content
+
   ol
-     each entry in entries
-       li 
-         ul
-           li name : #{entry.name._} 
-           li email : #{entry.email._}  
+
+  script(type="text/javascript").
+    var eTemp = !{JSON.stringify(entries)};  
+    alert(eTemp.length);  
 
 
+block append scripts
+  script(src='/javascripts/testJSFile2.js')
+
+   
+   // - var ip = "sdfsd";
+       if (entries[0].email._ == "daBeast@yahoo.com")
+          p=ip
+       else
+          p inside else

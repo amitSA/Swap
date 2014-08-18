@@ -52,7 +52,7 @@ app.get("/users", function (req, res, next) {
             console.log("error in /users request");
             return;
         }
-        console.log("the name is : " + result);
+        console.log("the name is : " + result.entries[0].email._);
         res.render("all-users", { entries : result.entries });
     });
 });
