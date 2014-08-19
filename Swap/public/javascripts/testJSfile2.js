@@ -33,3 +33,11 @@
     }
 alert(entries.length);
 */
+
+/*  var entry = entries[i];
+            var li = $("<li></li>");
+            var nest = $("<ul></ul>");
+            nest.append("<li>email: " + entry.email._ + "</li>")
+                .append("<li>name: " + entry.name._ + "</li>");
+            li.append(nest);
+            list.append(li);    */

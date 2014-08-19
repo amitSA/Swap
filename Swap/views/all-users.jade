@@ -3,18 +3,22 @@
 block content
 
   ol
-
-  script(type="text/javascript").
-    var eTemp = !{JSON.stringify(entries)};  
-    alert(eTemp.length);  
-
-
+  
+  
 block append scripts
-  script(src='/javascripts/testJSFile2.js')
-
-   
-   // - var ip = "sdfsd";
-       if (entries[0].email._ == "daBeast@yahoo.com")
-          p=ip
-       else
-          p inside else
+  script(type="text/javascript").
+    $(document).ready(function () {
+        var entries = !{JSON.stringify(entries)};  
+        var list = $("ol");
+        var i = 0;
+        for (; i < entries.length; i++) {
+            var entry = entries[i];
+            var li = $("<li></li>");
+            var nest = $("<ul></ul>");
+            nest.append("<li>email: " + entry.email._ + "</li>");
+            nest.append("<li>name: " + entry.name._ + "</li>");
+            li.append(nest);
+            list.append(li);   
+        }      
+        alert(entries.length);  
+    });
