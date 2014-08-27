@@ -47,7 +47,6 @@ app.post("/newuser", function (req, res, next) {
         if (error)
             console.log("error in /newuser request");
         //regardless if there was an error or not, render index.jade again
-       
         res.render("index");
     });
     
@@ -67,7 +66,8 @@ app.get("/users", function (req, res, next) {
 });
 
 
-app.get("/", function (req, res) {
+app.get(/\/$/, function (req, res) {
+    //console.log("parameter caught by the url: " + req.params.vars);
     res.render("index");
 });
 
