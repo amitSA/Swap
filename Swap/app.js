@@ -29,7 +29,7 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
-require('./routes/RouteManager');
+require('./routes/RouteManager.js');
 
 
 http.createServer(app).listen(app.get('port'), function(){
