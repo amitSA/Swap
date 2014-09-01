@@ -1,0 +1,23 @@
+﻿extends layout
+
+
+block append stylesheets
+  style.
+    .main {
+      margin : 50px 0px 0px 0px;
+    }
+    
+ 
+block content
+  div.container.main
+    h1=status
+    br
+    p=message
+    br
+    a.btn.btn-primary(role="button", href="/dev")
+      | Redirect to Dev
+
+
+
+block append scripts
+  

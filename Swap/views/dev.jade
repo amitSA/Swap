@@ -5,13 +5,11 @@ block append stylesheets
     .buttonHolder {
       margin-top : 50px; 
     }
+   
     .dropdown {
-      width : 100px;
-      height : 100px;
-      background-color : grey;
-    }
-    #dropdownID {
       display : none;
+      background-color : #F2F2F2;
+      padding: 10px 5px 5px 5px;
     }
 
 block content
@@ -21,21 +19,53 @@ block content
         div.col-xs-6
           button.btn.btn-primary.btn-lg.btn-block#AddButton
             | Add Table
-          div.jumbotron#dropdownID
+          div.dropdown
+            form(role ="form", method="POST", action="/dev/newtable")
+              div.form-group
+                label(for="#addTable") Table Name
+                input#addTable.form-control(type="text", name="tbName" ,placeholder="Table-Name")  
+              div.form-group
+                button.btn.btn-default(type="submit") 
+                  | Add
         div.col-xs-6
           button.btn.btn-success.btn-lg.btn-block#DeleteButton
             | Delete Table
-          div.jumbotron#dropdownID
-        
-         
+          div.dropdown#DeleteDropDown
+            form(role="form", method="POST", action="/dev/deletetbl")
+              input(type="hidden" name="_method" value="DELETE")  
+              div.form-group#tableList
+                //inserted jquery rows will go here
+              div.form-group
+                button.btn.btn-default(type="submit")
+                  | Delete
+              
+ 
 
 
 
 block append scripts
   script(type="text/javascript").
      $(document).ready(function(){
-       $("#AddButton,#DeleteButton").click(function(){
-          var jumbo = $(this).next();
-          jumbo.slideToggle(400);
-       });
+         $("#AddButton,#DeleteButton").click(function(){
+            var jumbo = $(this).next();
+            jumbo.slideToggle(400);
+         });
+
+         //$("#DeleteDropDown").find("button").click(function(){
+         
+         var count = 0;
+         var tables = !{JSON.stringify(tables)};
+         var sup = $("div.dropdown#DeleteDropDown").find("div.form-group#tableList");
+           
+         for(var i = 0;i<tables.length;i++)  { 
+           var toAdd = '<div class="checkbox"> \
+                            <label> \
+                              <input type="checkbox" name="'+count+'"value="'+tables[i]+'"> \
+                                '+tables[i]+' \
+                              </input> \
+                            </label> \
+                          </div>';
+           sup.append(toAdd);
+           count++; // move this into the for-loop header
+         }
      });
