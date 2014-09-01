@@ -33,7 +33,7 @@
     <Compile Include="app.js" />
     <Compile Include="public\javascripts\dev.js" />
     <Compile Include="routes\DevRoutes.js" />
-    <Compile Include="routes\user.js" />
+    <Compile Include="routes\oldcode.js" />
     <Content Include="package.json" />
     <Content Include="public\stylesheets\style.styl" />
     <Content Include="README.md" />

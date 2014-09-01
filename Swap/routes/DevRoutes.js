@@ -33,10 +33,9 @@ app.post("/dev/newtable", function (req, res, error) {
 
 app.delete("/dev/deletetbl", function (req, res, error) {
   var b = req.body;
-  var length = Object.keys(b).length;
-  //console.log(length);
-  for (var i = 0; i < length; i++) {
-    tableSvc.deleteTable(b[i+""], function (error, response) {});
+  var keyArray = Object.keys(b);
+  for (var i = 0; i < keyArray.length; i++) {
+    tableSvc.deleteTable(b[keyArray[i]], function (error, response) {});
   }
   var message = "Tables deleted succesfully";   //since the user is selected from a list of available tables, its impossible for them to select a invalid table name
   var status = "Success"
