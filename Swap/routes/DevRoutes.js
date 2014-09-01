@@ -10,7 +10,7 @@ app.get("/dev", function (req, res, error) {
       console.log("error in DevRoutes: get \"/dev\" method");
       return;
     }
-    res.render("dev", { tables : result.entries });
+    res.render("dev.jade", { tables : result.entries });
   });
 });
   
