@@ -1,10 +1,8 @@
 ﻿var app = require("../app.js");
-
-
-//getting another instance of the tableSvc might cause extra overhead
 var azure = require("azure-storage");
-var tableSvc = azure.createTableService("swaptable", "8UDip3NaZvG7QgPKrPrRR/D/78kgnrf7GG89Jo5omrPAhEr/eFRV41W790Q/R4XhgcMVFIcl885HLX3pSuXD0g==");
-//SEE ABOVE COMMENT
+var tableSvc = require("./RouteManager.js").tableSvc;
+
+
 
 app.get("/dev", function (req, res, error) {  
   tableSvc.listTablesSegmented(null, function (error, result, response) {
@@ -44,3 +42,21 @@ app.delete("/dev/deletetbl", function (req, res, error) {
   res.render("./dev/dev-response", { message : message , status : status });
 });
 
+app.get("/dev/:tableName/users", function (req, res, next) {
+  var query = new azure.TableQuery();
+ 
+  tableSvc.queryEntities(req.params.tableName, query, null, function (error, result, response) {
+    if (error) {
+      console.log("error in /users request");
+      return;
+    }
+    res.render("./dev/all-users", { entries: result.entries });
+  });
+});
+
+
+
+/*getting another instance of the tableSvc might cause extra overhead
+var azure = require("azure-storage");
+var tableSvc = azure.createTableService("swaptable", "8UDip3NaZvG7QgPKrPrRR/D/78kgnrf7GG89Jo5omrPAhEr/eFRV41W790Q/R4XhgcMVFIcl885HLX3pSuXD0g==");
+//SEE ABOVE COMMENT*/

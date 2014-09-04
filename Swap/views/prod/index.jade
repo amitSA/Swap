@@ -31,10 +31,10 @@ block append content
               br
               div.tab-content
                  div.tab-pane.in.active.fade#login
-                    form(role="form")
+                    form(role="form", method = "GET" , action = "/login")
                       div.form-group
                         label(for="login-email") Email
-                        input#login-email.form-control(type="email", placeholder="Your email")
+                        input#login-email.form-control(type="email", name="email" ,placeholder="Your email")
                       div.form-group  
                         button.btn.btn-primary.btn-sm(type="submit")
                           span.glyphicon.glyphicon-chevron-right 

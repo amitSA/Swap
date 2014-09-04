@@ -32,15 +32,18 @@
   <ItemGroup>
     <Compile Include="app.js" />
     <Compile Include="public\javascripts\dev.js" />
-    <Compile Include="routes\DevRoutes.js" />
+    <Compile Include="routes\dev.js" />
+    <Compile Include="routes\user.js" />
+    <Compile Include="routes\index.js" />
     <Compile Include="routes\oldcode.js" />
     <Content Include="package.json" />
     <Content Include="public\stylesheets\style.styl" />
     <Content Include="README.md" />
     <Content Include="views\dev\dev-response.jade" />
     <Content Include="views\dev\dev.jade" />
-    <Content Include="views\prod\home.jade" />
+    <Content Include="views\prod\index.jade" />
     <Content Include="views\layout.jade" />
+    <Content Include="views\prod\userhome.jade" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="public\" />
