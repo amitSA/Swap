@@ -20,7 +20,7 @@ app.post("/newuser", function (req, res, next) {
         email: {"_":b.email}, 
         name: {"_":b.userName}
     };
-    tableSvc.insertEntity('testtable4', entry, function (error, result, response) {
+    tableSvc.insertEntity('usertable', entry, function (error, result, response) {
         if (error)
             console.log("error in /newuser request");
         res.render("index"); //regardless if there was an error or not, render index.jade again
@@ -29,7 +29,7 @@ app.post("/newuser", function (req, res, next) {
 
 app.get("/users", function (req, res, next) {
     var query = new azure.TableQuery();
-    tableSvc.queryEntities("testtable4", query, null, function (error, result, response) {
+    tableSvc.queryEntities("usertable", query, null, function (error, result, response) {
         if (error) {
             console.log("error in /users request");
             return;

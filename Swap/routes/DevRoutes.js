@@ -1,8 +1,10 @@
 ﻿var app = require("../app.js");
 
+
+//getting another instance of the tableSvc might cause extra overhead
 var azure = require("azure-storage");
 var tableSvc = azure.createTableService("swaptable", "8UDip3NaZvG7QgPKrPrRR/D/78kgnrf7GG89Jo5omrPAhEr/eFRV41W790Q/R4XhgcMVFIcl885HLX3pSuXD0g==");
-
+//SEE ABOVE COMMENT
 
 app.get("/dev", function (req, res, error) {  
   tableSvc.listTablesSegmented(null, function (error, result, response) {
@@ -10,7 +12,7 @@ app.get("/dev", function (req, res, error) {
       console.log("error in DevRoutes: get \"/dev\" method");
       return;
     }
-    res.render("dev.jade", { tables : result.entries });
+    res.render("./dev/dev.jade", { tables : result.entries });
   });
 });
   
@@ -27,7 +29,7 @@ app.post("/dev/newtable", function (req, res, error) {
         message += "Table created succesfully";
         status += "Success";
       }
-    res.render("dev-response", {message : message, status : status});
+    res.render("./dev/dev-response", {message : message, status : status});
   });
 });
 
@@ -39,6 +41,6 @@ app.delete("/dev/deletetbl", function (req, res, error) {
   }
   var message = "Tables deleted succesfully";   //since the user is selected from a list of available tables, its impossible for them to select a invalid table name
   var status = "Success"
-  res.render("dev-response", { message : message , status : status });
+  res.render("./dev/dev-response", { message : message , status : status });
 });
 
