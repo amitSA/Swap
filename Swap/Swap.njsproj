@@ -39,7 +39,7 @@
     <Content Include="README.md" />
     <Content Include="views\dev\dev-response.jade" />
     <Content Include="views\dev\dev.jade" />
-    <Content Include="views\index.jade" />
+    <Content Include="views\prod\home.jade" />
     <Content Include="views\layout.jade" />
   </ItemGroup>
   <ItemGroup>
@@ -50,6 +50,7 @@
     <Folder Include="routes\" />
     <Folder Include="views\" />
     <Folder Include="views\dev\" />
+    <Folder Include="views\prod\" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\Node.js Tools\Microsoft.NodejsTools.targets" />
   <ProjectExtensions>

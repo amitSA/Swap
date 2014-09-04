@@ -1,5 +1,4 @@
-﻿
-/*
+﻿/*
 This file manages all the routes for the website's server
 */
 
@@ -34,14 +33,18 @@ app.get("/users", function (req, res, next) {
             console.log("error in /users request");
             return;
         }
-        res.render("all-users", { entries : result.entries });
+        res.render("./dev/all-users", { entries : result.entries });
     });
 });
 
 
 app.get("/", function (req, res) {
-    res.render("index");
+    res.render("./prod/home");
 });
 
 
-
+/*
+app.get("/test", function (req, res) {
+  var ses = req.session.name;
+  res.send("<h3>The session is : " + ses + "</h3>");
+});*/
