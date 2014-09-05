@@ -1,12 +1,13 @@
 ﻿var app = require("../app.js");
 var azure = require("azure-storage");
 var tableSvc = require("./RouteManager.js").tableSvc;
+var func = require("./functions.js");
+//this requiring is becoming tedious, find a way to fix that
 
+app.get("/", func.markLoginStatus, function (req, res, next) {
 
-app.get("/", function (req, res, next) {
-
-  if (req.session["email-sess"])
-     res.render("./prod/userhome"); 
+  if (req.isLoggedIn)
+    res.render("./prod/userhome");
   res.render("./prod/index");
 });
 
@@ -14,13 +15,13 @@ app.get("/login", function (req, res, next) {
     
   var email = req.query.email;
   
-  tableSvc.retrieveEntity("usertable",email,"user-info", function (error, result, response) {
+  tableSvc.retrieveEntity("usertable",email,"userinfo", function (error, result, response) {
     if (error) {
       console.log("error in index.js : \"login\" get route");
       return; //INSTEAD DISPLAY(render) AN ERROR PAGE
     }
-    console.log(result.entity);
-    if (result.entity.email._ === email) {
+    console.log(result);
+    if (result.email._ === email) {
       req.session["email-sess"] = email;
       res.redirect("/home");
     } else {
@@ -37,7 +38,7 @@ app.post("/newuser", function (req, res, next) {
   console.log("the name is : " + b.userName);
   var entry = {
     PartitionKey: { "_": b.email }, 
-    RowKey: { "_": "user-info" },
+    RowKey: { "_": "userinfo" },
     email: { "_": b.email }, 
     name: { "_": b.name }
   };

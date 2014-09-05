@@ -1,6 +1,7 @@
 ﻿var app = require("../app.js");
 var azure = require("azure-storage");
 var tableSvc = require("./RouteManager.js").tableSvc;
+var func = require("./functions.js");
 
 
 app.get("/dev", function (req, res, error) {  
