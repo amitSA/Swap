@@ -4,28 +4,24 @@ var tableSvc = require("./RouteManager.js").tableSvc;
 
 
 app.get("/", function (req, res, next) {
-  
-  // IF THEY ARE ALLREADY LOGGED IN, THEN REDIRECT THEM TO THE USER VIEW
-  if (req.session.username)
-     res.redirect("./prod/userhome"); 
+
+  if (req.session["email-sess"])
+     res.render("./prod/userhome"); 
   res.render("./prod/index");
 });
 
 app.get("/login", function (req, res, next) {
     
   var email = req.query.email;
-  var query = new azure.TableQuery()
-      .select(["email"])
-      .top(1)      // technically this is not necessary since every partition only has 1 entity, but this is included just for debugging purposes
-      .where("PartitionKey eq ?", email);
-  tableSvc.queryEntities("usertable", query, null, function (error, result, resonse) {
+  
+  tableSvc.retrieveEntity("usertable",email,"user-info", function (error, result, response) {
     if (error) {
       console.log("error in index.js : \"login\" get route");
       return; //INSTEAD DISPLAY(render) AN ERROR PAGE
     }
-    var entries = result.entries;
-    if (entries[0].email._ === email) {
-      req.session.username = email;
+    console.log(result.entity);
+    if (result.entity.email._ === email) {
+      req.session["email-sess"] = email;
       res.redirect("/home");
     } else {
        //DISPLAY ERROR MESSAGE IN INDEX.JADE (a red error box ontop of the login tabs saying that a user w/ that email doesnt exist)
@@ -41,15 +37,21 @@ app.post("/newuser", function (req, res, next) {
   console.log("the name is : " + b.userName);
   var entry = {
     PartitionKey: { "_": b.email }, 
-    RowKey: { "_": "1" },
+    RowKey: { "_": "user-info" },
     email: { "_": b.email }, 
-    name: { "_": b.userName }
+    name: { "_": b.name }
   };
   tableSvc.insertEntity('usertable', entry, function (error, result, response) {
     if (error)
-      console.log("error in /newuser request");
+      console.log("error in /newuser request :" + error);
 
     res.render("./prod/index"); //regardless if there was an error or not, render index.jade again
   });
 });
 
+
+
+/*var query = new azure.TableQuery()
+      .select(["email"])
+      .top(1)      // technically this is not necessary since every partition only has 1 entity, but this is included just for debugging purposes
+      .where("PartitionKey eq ?", email);*/

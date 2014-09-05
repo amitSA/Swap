@@ -3,7 +3,6 @@ var azure = require("azure-storage");
 var tableSvc = require("./RouteManager.js").tableSvc;
 
 
-
 app.get("/dev", function (req, res, error) {  
   tableSvc.listTablesSegmented(null, function (error, result, response) {
     if (error) {
