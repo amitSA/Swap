@@ -20,7 +20,6 @@ app.get("/login", function (req, res, next) {
       console.log("error in index.js : \"login\" get route");
       return; //INSTEAD DISPLAY(render) AN ERROR PAGE
     }
-    console.log(result);
     if (result.email._ === email) {
       req.session["email-sess"] = email;
       res.redirect("/home");
@@ -40,7 +39,7 @@ app.post("/newuser", function (req, res, next) {
     PartitionKey: { "_": b.email }, 
     RowKey: { "_": "userinfo" },
     email: { "_": b.email }, 
-    name: { "_": b.name }
+    name: { "_": b.userName }
   };
   tableSvc.insertEntity('usertable', entry, function (error, result, response) {
     if (error)

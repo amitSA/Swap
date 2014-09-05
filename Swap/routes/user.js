@@ -12,13 +12,16 @@ var isLoggedIn = function (req, res, next) {
     res.redirect("/");
 }
 
-app.get(/^\/home/, func.markLoginStatus,function (req, res, next) { 
-                                 
-  var ses = req.session["email-sess"];                                                                                                                                             
-  if (req.isLoggedIn)
-    res.send("<h1>Welcome " + name + "</h1>");  //IS THERE A FORMAT SPECIFIER FUNCTION FOR JAVASCRIPT
-  else
+app.get(/^\/home/, func.markLoginStatus,function (req, res, next) {
+  
+  if (!req.isLoggedIn)
     res.redirect("/");
+                      
+  var email = req.session["email-sess"];
+  tableSvc.retrieveEntity("usertable", email, "userinfo", function (error, result, response) {
+    console.log(result);
+    res.send("<h1>Welcome " + result.name + "</h1>");  //IS THERE A FORMAT SPECIFIER FUNCTION FOR JAVASCRIPT
+  });                                                                                                                                            
 });
 
 
