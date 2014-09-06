@@ -5,6 +5,7 @@
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
     <Name>ExpressApp7</Name>
     <RootNamespace>ExpressApp7</RootNamespace>
+    <NameOfLastUsedPublishProfile>swaptest</NameOfLastUsedPublishProfile>
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -40,6 +41,8 @@
     <Content Include="package.json" />
     <Content Include="public\stylesheets\style.styl" />
     <Content Include="README.md" />
+    <Content Include="web.config" />
+    <None Include="swaptest.pubxml" />
     <Content Include="views\dev\dev-response.jade" />
     <Content Include="views\dev\dev.jade" />
     <Content Include="views\prod\index.jade" />
