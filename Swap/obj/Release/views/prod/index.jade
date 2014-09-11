@@ -1,0 +1,72 @@
+﻿extends ../layout
+
+block append stylesheets
+  style.
+     .signinform {
+        background-color : #E0E0E0;
+        border-radius: 15px;
+        height: 100%;
+        padding : 10px 10px 0px 10px;
+     }
+     ul.nav > li > a:hover {
+        background-color: #B2D1FF;
+     }
+   
+block append content
+    div.container
+      div.header
+        div.nav.nav-pills.pull-left
+          a(href = "/")
+            img(src = "images/swaplogo.png", alt = "unloaded image").img-rounded
+          
+    div.container
+        div.col-xs-offset-4.col-xs-4
+          div.signinform
+            div.tabbable
+              ul.nav.nav-tabs(role = "tablist")
+                 li.active
+                     a(data-target = "#login", data-toggle="tab") Login
+                 li
+                     a(data-target = "#signup", data-toggle="tab") Sign Up 
+              br
+              div.tab-content
+                 div.tab-pane.in.active.fade#login
+                    form(role="form", method = "GET" , action = "/login")
+                      div.form-group
+                        label(for="login-email") Email
+                        input#login-email.form-control(type="email", name="email" ,placeholder="Your email")
+                      div.form-group  
+                        button.btn.btn-primary.btn-sm(type="submit")
+                          span.glyphicon.glyphicon-chevron-right 
+                          | Login   
+                 div.tab-pane.in.fade#signup
+                    form(role="form", method="POST", action="/newuser")
+                      div.form-group
+                        label(for="signup-name") Name
+                        input#signup-name.form-control(type="text", placeholder="Your public name", name="userName")
+                      div.form-group
+                        label(for="signup-email") Email
+                        input#signup-email.form-control(type="email", placeholder="Your email", name="email")
+                      div.form-group
+                        button.btn.btn-primary.btn-sm(type="submit")
+                          span.glyphicon.glyphicon-chevron-right 
+                          | Sign In
+                
+
+            
+block append scripts
+   
+  
+     
+     
+       
+
+
+
+
+  
+    
+    
+
+            
+

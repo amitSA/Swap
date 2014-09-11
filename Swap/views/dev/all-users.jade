@@ -13,10 +13,14 @@ block append scripts
         var i = 0;
         for (; i < entries.length; i++) {
             var entry = entries[i];
+            var keys = Object.keys(entry);
             var li = $("<li></li>");
             var nest = $("<ul></ul>");
-            nest.append("<li>email: " + entry.email._ + "</li>");
-            nest.append("<li>name: " + entry.name._ + "</li>");
+            for(var ip = 0;ip<keys.length;ip++){
+              nest.append("<li>" + keys[ip] + ":" + entry[keys[ip]]._ + "</li>");
+            }
+             //nest.append("<li>email: " + entry.email._ + "</li>");
+             //nest.append("<li>name: " + entry.name._ + "</li>");
             li.append(nest);
             list.append(li);   
         }      

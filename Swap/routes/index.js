@@ -55,3 +55,6 @@ app.post("/newuser", function (req, res, next) {
       .select(["email"])
       .top(1)      // technically this is not necessary since every partition only has 1 entity, but this is included just for debugging purposes
       .where("PartitionKey eq ?", email);*/
+
+
+

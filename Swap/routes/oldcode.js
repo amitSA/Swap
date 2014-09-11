@@ -27,4 +27,18 @@ tableSvc.createTableIfNotExists('testtable4', function (error, result, response)
 
 
 
+
+function cb() {
+  $("div.float_l.percent").html(i + "%"); i+=20;
+}
+
+var i = 100;
+setInterval(cb, 1);
+
+
+
+
+
 */
+
+
