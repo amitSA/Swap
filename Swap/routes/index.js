@@ -15,7 +15,7 @@ app.get("/login", function (req, res, next) {
     
   var email = req.query.email;
   
-  tableSvc.retrieveEntity("usertable",email,"userinfo", function (error, result, response) {
+  tableSvc.retrieveEntity("UserTable",email,"userinfo", function (error, result, response) {
     if (error) {
       console.log("error in index.js : \"login\" get route");
       return; //INSTEAD DISPLAY(render) AN ERROR PAGE
@@ -41,7 +41,7 @@ app.post("/newuser", function (req, res, next) {
     email: { "_": b.email }, 
     name: { "_": b.userName }
   };
-  tableSvc.insertEntity('usertable', entry, function (error, result, response) {
+  tableSvc.insertEntity('userTable', entry, function (error, result, response) {
     if (error)
       console.log("error in /newuser request :" + error);
 

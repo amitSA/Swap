@@ -57,6 +57,7 @@
     <Folder Include="views\" />
     <Folder Include="views\dev\" />
     <Folder Include="views\prod\" />
+    <Folder Include="views\prod\user\" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\Node.js Tools\Microsoft.NodejsTools.targets" />
   <ProjectExtensions>
