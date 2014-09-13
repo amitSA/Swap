@@ -7,7 +7,7 @@ var func = require("./functions.js");
 app.get("/", func.markLoginStatus, function (req, res, next) {
 
   if (req.isLoggedIn)
-    res.render("./prod/userhome");
+    res.redirect("/home");
   res.render("./prod/index");
 });
 
@@ -41,7 +41,7 @@ app.post("/newuser", function (req, res, next) {
     email: { "_": b.email }, 
     name: { "_": b.userName }
   };
-  tableSvc.insertEntity('userTable', entry, function (error, result, response) {
+  tableSvc.insertEntity('UserTable', entry, function (error, result, response) {
     if (error)
       console.log("error in /newuser request :" + error);
 
