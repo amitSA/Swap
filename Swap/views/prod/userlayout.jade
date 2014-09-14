@@ -1,0 +1,45 @@
+﻿extends ../layout
+
+block append stylesheets
+   style.
+    .header-display {
+      display : inline-block;
+      //margin : 10px 10px 0px 5px;
+    }
+   
+}
+
+
+
+block append content
+ div.container-fluid
+   div.col-sm-2      
+     div.header-display
+        a(href = "/")
+           img(src = "images/swaplogo.png", alt = "unloaded image").img-rounded
+   div.col-sm-offset-1.col-sm-6
+     div.header-display
+       h1 Logged in as #{name}    
+          
+
+
+
+                
+
+            
+block append scripts
+   
+  
+     
+     
+       
+
+
+
+
+  
+    
+    
+
+            
+

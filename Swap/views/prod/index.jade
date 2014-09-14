@@ -13,6 +13,7 @@ block append stylesheets
      }
    
 block append content
+    //is the logo something we want in EVERY PAGE for the website
     div.container
       div.header
         div.nav.nav-pills.pull-left
@@ -25,9 +26,9 @@ block append content
             div.tabbable
               ul.nav.nav-tabs(role = "tablist")
                  li.active
-                     a(data-target = "#login", data-toggle="tab") Login
+                     a(data-target="#login", data-toggle="tab") Login
                  li
-                     a(data-target = "#signup", data-toggle="tab") Sign Up 
+                     a(data-target="#signup", data-toggle="tab") Sign Up 
               br
               div.tab-content
                  div.tab-pane.in.active.fade#login
