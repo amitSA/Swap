@@ -4,47 +4,23 @@ block append stylesheets
    style.
     .header-display {
       display : inline-block;
-      /*margin : 10px 10px 0px 5px;*/
     }
-   
-    /** {
+    /* {
       border-style: solid;
       Sborder-width: 5px;
     }*/
 
 
-
-
 block append content
  div.container-fluid
    div.col-sm-2      
-     div.header-display
-        a(href = "/")
-           img(src = "images/swaplogo.png", alt = "unloaded image").img-rounded
-   div.col-sm-offset-1.col-sm-6
-     center
-       div.header-display
-         h1 Logged in as #{name}    
-          
+     a(href = "/")
+       img(src = "images/swaplogo.png", alt = "unloaded image").img-rounded
+   div.col-sm-offset-1.col-sm-3
+     h2 Logged in as #{name} 
+   div.col-sm-offset-1.col-sm-5         
+     div.navbar.navbar-default(role="navigation")
+     
 
 
-
-                
-
-            
 block append scripts
-   
-  
-     
-     
-       
-
-
-
-
-  
-    
-    
-
-            
-
