@@ -5,7 +5,6 @@ var func = require("./functions.js");
 //this requiring is becoming tedious, find a way to fix that
 
 app.get("/", func.markLoginStatus, function (req, res, next) {
-
   if (req.isLoggedIn)
     res.redirect("/home");
   res.render("./prod/index");
@@ -47,6 +46,12 @@ app.post("/newuser", function (req, res, next) {
 
     res.render("./prod/index"); //regardless if there was an error or not, render index.jade again
   });
+});
+
+app.get("/logout", func.markLoginStatus ,function (req, res, next) {
+  if (req.isLoggedIn)
+    req.session.destroy()
+  res.redirect("/");          
 });
 
 
