@@ -27,23 +27,7 @@ block append stylesheets
         background-color: rgb(23,55,94);    /* Dark blue: 23, 55,94   .... Light Blue: 85,142,213 */
         color : white;
       }
-       
-      
 
-
-
-     
-    
-     
-
-   
-    
-
-     
-
-
-
-   
 block append content
     //is the logo something we want in EVERY PAGE for the website
     div.container
@@ -68,7 +52,7 @@ block append content
                       form(role="form", method = "GET" , action = "/login")
                         div.form-group
                           label(for="login-email") Email
-                          input#login-email.form-control(type="email", name="email" ,placeholder="Your email")
+                          input#login-email.form-control(type="email", name="email" ,placeholder="Your email", required)
                         div.form-group  
                           button.btn.btn-primary.btn-sm(type="submit")
                             span.glyphicon.glyphicon-chevron-right 
@@ -77,10 +61,10 @@ block append content
                       form(role="form", method="POST", action="/newuser")
                         div.form-group
                           label(for="signup-name") Name
-                          input#signup-name.form-control(type="text", placeholder="Your public name", name="userName")
+                          input#signup-name.form-control(type="text", placeholder="Your public name", name="userName", required)
                         div.form-group
                           label(for="signup-email") Email
-                          input#signup-email.form-control(type="email", placeholder="Your email", name="email")
+                          input#signup-email.form-control(type="email", placeholder="Your email", name="email", required)
                         div.form-group
                           button.btn.btn-primary.btn-sm(type="submit")
                             span.glyphicon.glyphicon-chevron-right 

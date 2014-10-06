@@ -42,7 +42,7 @@ app.delete("/dev/deletetbl", function (req, res, error) {
   res.render("./dev/dev-response", { message : message , status : status });
 });
 
-app.get("/dev/:tableName/users", function (req, res, next) {
+app.get("/dev/:tableName", function (req, res, next) {
   var query = new azure.TableQuery();
  
   tableSvc.queryEntities(req.params.tableName, query, null, function (error, result, response) {
