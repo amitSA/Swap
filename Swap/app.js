@@ -41,12 +41,10 @@ http.createServer(app).listen(app.get('port'), function(){
 
 
 /*
-
 app.get("/", routes.index);
 
 app.get("/users", user.list);
 app.get("/temp", function (req,res) {
     //res.send("This text UPDATED, but will this update realtime");
     //res.set('Content-Type', 'text/html');
-    
 });*/

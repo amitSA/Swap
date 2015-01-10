@@ -17,7 +17,7 @@ app.get("/login", function (req, res, next) {
   tableSvc.retrieveEntity("UserTable",email,"userinfo", function (error, result, response) {
     if (error) {
       console.log("error in index.js : \"login\" get route");
-      return; //INSTEAD DISPLAY(render) AN ERROR PAGE
+      return; //INSTEAD RENDER AN ERROR PAGE
     }
     if (result.email._ === email) {
       req.session["email-sess"] = email;
