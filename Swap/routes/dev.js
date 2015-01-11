@@ -1,6 +1,6 @@
 ﻿
 module.exports = function (obj) {
-  var app = obj.app; var azure = obj.azure; var tableSvc = obj.tableSvc; var func = obj.func;
+  var app = obj.app; var azure = obj.azure; var tableSvc = obj.tableSvc;
 
   app.get("/dev", function (req, res, error) {
     tableSvc.listTablesSegmented(null, function (error, result, response) {

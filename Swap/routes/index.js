@@ -1,9 +1,10 @@
 ﻿
 
 module.exports = function (obj) {
-  var app = obj.app; var azure = obj.azure; var tableSvc = obj.tableSvc; var func = obj.func;
+  var app = obj.app; var azure = obj.azure; var tableSvc = obj.tableSvc; var cont = obj.cont;
+  var userTable = cont.userTable;
 
-  app.get("/", func.markLoginStatus, function (req, res, next) {
+  app.get("/", cont.markLoginStatus, function (req, res, next) {
     if (req.isLoggedIn)
       res.redirect("/home");
     res.render("./prod/index");
@@ -13,7 +14,7 @@ module.exports = function (obj) {
     
     var email = req.query.email;
     
-    tableSvc.retrieveEntity("UserTable", email, "userinfo", function (error, result, response) {
+    tableSvc.retrieveEntity(userTable, email, "userinfo", function (error, result, response) {
       if (error) {
         console.log("error in index.js : \"login\" get route");
         return; //INSTEAD RENDER AN ERROR PAGE
@@ -39,7 +40,7 @@ module.exports = function (obj) {
       email: { "_": b.email }, 
       name: { "_": b.userName }
     };
-    tableSvc.insertEntity('UserTable', entry, function (error, result, response) {
+    tableSvc.insertEntity(userTable, entry, function (error, result, response) {
       if (error)
         console.log("error in /newuser request :" + error);
       
@@ -47,7 +48,7 @@ module.exports = function (obj) {
     });
   });
   
-  app.get("/logout", func.markLoginStatus , function (req, res, next) {
+  app.get("/logout", cont.markLoginStatus , function (req, res, next) {
     if (req.isLoggedIn)
       req.session.destroy()
     res.redirect("/");

@@ -8,4 +8,7 @@ module.exports = {
     next();
   },
 
+
+  userTable : "UserTable",
+
 };

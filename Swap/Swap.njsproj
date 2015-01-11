@@ -34,7 +34,7 @@
     <Compile Include="app.js" />
     <Compile Include="public\javascripts\dev.js" />
     <Compile Include="public\javascripts\jquery.dataTables.js" />
-    <Compile Include="routes\functions.js" />
+    <Compile Include="routes\container.js" />
     <Compile Include="routes\dev.js" />
     <Compile Include="routes\user.js" />
     <Compile Include="routes\index.js" />
@@ -43,13 +43,13 @@
     <Content Include="public\stylesheets\jquery.dataTables.css" />
     <Content Include="public\stylesheets\style.styl" />
     <Content Include="README.md" />
-    <Content Include="views\prod\userlayout.jade" />
+    <Content Include="views\prod\user\userlayout.jade" />
     <None Include="swaptest.pubxml" />
     <Content Include="views\dev\dev-response.jade" />
     <Content Include="views\dev\dev.jade" />
     <Content Include="views\prod\index.jade" />
     <Content Include="views\layout.jade" />
-    <Content Include="views\prod\userhome.jade" />
+    <Content Include="views\prod\user\userhome.jade" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="public\" />
