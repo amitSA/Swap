@@ -39,7 +39,7 @@ block append content
     div.container
         div.col-xs-offset-4.col-xs-4
           
-              div.tabbable.mytabs
+              div.tabpanel.mytabs
                 ul.nav.nav-tabs(role = "tablist")
                    li.active
                        a(data-target="#login", data-toggle="tab") Login
@@ -57,7 +57,7 @@ block append content
                           button.btn.btn-primary.btn-sm(type="submit")
                             span.glyphicon.glyphicon-chevron-right 
                             | Login   
-                   div.tab-pane.in.fade#signup
+                   div.tab-pane.fade#signup
                       form(role="form", method="POST", action="/newuser")
                         div.form-group
                           label(for="signup-name") Name

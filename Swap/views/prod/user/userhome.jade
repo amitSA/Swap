@@ -10,41 +10,84 @@ block append stylesheets
       height: 75px;
     }
 
-    /* {
+    .pushtab{
+      margin-left : 4%;
+    }
+
+    .my-tabcontent{
       border-style: solid;
-      Sborder-width: 5px;
-    }*/
+      border-color : rgb(23,55,94);
+      border-width: 2px;
+      background-color : rgb(225,225,225);
+      border-radius: 15px;
+      height: 100%;
+      padding : 10px 10px 0px 10px;
+    }
+    ul.nav > li > a  {
+        background-color: rgb(85,142,213);    /* Dark blue: 23, 55,94   .... Light Blue: 85,142,213 */
+        color : white;
+      }
+    ul.nav > li > a:hover {
+      background-color: rgb(23,55,94);    /* Dark blue: 23, 55,94   .... Light Blue: 85,142,213 */
+      color : white;
+    }
+    ul.nav > li.active > a, ul.nav > li.active > a:hover {
+      background-color: rgb(23,55,94);    /* Dark blue: 23, 55,94   .... Light Blue: 85,142,213 */
+      color : white;
+    }
+    select {
+      float : right;
+      margin-bottom : 5px;
+    }
 
 
 block append content
- div.container-fluid
-   div.col-sm-2      
-     a(href = "/")
-       img(src = "images/swaplogo.png", alt = "unloaded image").img-rounded.head-image
-   div.col-sm-offset-1.col-sm-3
-     h2 Welcome #{name} 
-   div.col-sm-offset-1.col-sm-5         
-     div.navbar.navbar-default(role="navigation")
-       div.container-fluid
-         div.collapse.navbar-collapse
-           u1.nav.navbar-nav.navbar-right
-             li.active
-               a(href="/logout") Logout
-    
-   select#selectID(onchange="change()")
-     option(value="active") Active reservation
-     option(value="taken") Taken reservation
-     option(value="past") Past reservation
+  div.container-fluid
+    div.col-sm-2      
+      a(href = "/")
+        img(src = "images/swaplogo.png", alt = "unloaded image").img-rounded.head-image
+    div.col-sm-offset-1.col-sm-3
+      h2 Welcome #{name}! 
+    div.col-sm-offset-1.col-sm-5         
+      div.navbar.navbar-default(role="navigation")
+        div.container-fluid
+          div.collapse.navbar-collapse
+            u1.nav.navbar-nav.navbar-right
+              li.active
+                a(href="/logout") Logout
+                     
+  div.container-fluid
+     div.tabpanel.pushtab
+        ul.nav.nav-tabs(role="tablist")
+           li.active
+              a(data-target="#myreservations" ,data-toggle="tab")
+                 |My Reservations
+           li
+              a(data-target="#market" ,data-toggle="tab")
+                 |Swap Market
+     div.my-tabcontent
+        div.tabcontent
+           div.tab-pane.active.in.active.fade#myreservations
+              select#selectID(onchange="change()")
+                  option(value="active") Active reservation
+                  option(value="taken") Taken reservation
+                  option(value="past") Past reservation
+              div#tableID 
+           div.tab-pane.active.fade#market
+              div#tableID 
+             
+      
+        
    
-   div#tableID    
+      
 
 
 block append scripts
   script.
     function change(){
-      var sel = $("#selectID")[0];
-      var val = sel.options[sel.selectedIndex].value;
-      alert(val);
+      var opt = $("#selectID option:selected");   //before changes : $("#selectID")[0];
+      //var val = sel.options[sel.selectedIndex].value;
+      alert(opt.attr("value"));
     }
 
     $(document).ready( function () {
@@ -52,6 +95,8 @@ block append scripts
       $('#table_id').dataTable();
     });
      
+     /*
+     */
      
        
 
