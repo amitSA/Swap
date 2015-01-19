@@ -73,9 +73,28 @@ block append content
 
             
 block append scripts
+   script.
+        $(document).ready( function () {
+            var div = $('<div class="container">Hello</div><div class="jumbotron">Bye,nnooo,comebacknsdfno</div>');
+            var html = $("<div>").append($("div")).html();                      
+            alert(html);
+          });
+
+          /*   $(document).ready(function(){
+             //var html = $("<div>");//.append('<div class="container"> <div class="jumbotron"></div></div>').html();      
+             alert("stuff"); 
+      
+            });
    
-  
-     
+            // <p>Adioss World</p>     </div><h2>Noooo baby come back</h2><div class="jumbotron"><p>NEVER,wait,nooooo</p>
+            var html = $("body").append('
+             <div class="container"> <div class="jumbotron"><p>Adioss World</p>     </div>
+                <h2>Noooo baby come back</h2>
+                <div class="jumbotron">
+                   <p>NEVER,wait,nooooo</p>
+                </div>
+            </div>').html();      
+            alert("stuff"); */
      
        
 
