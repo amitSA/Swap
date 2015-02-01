@@ -112,6 +112,7 @@ block append scripts
     }
      function makeNewRes(){
        //$("#table_id tbody").prepend('<tr role="row" class="odd">      <td class="sorting_1"></td>      <td contenteditable="true">&nbsp;</td>      <td></td>      <td></td>      <td></td>      <td></td>     </tr>');
+      
        if(!state.isNewBeingCreated){
          var tr = $('<tr id="#newItem" role="row" class="odd">      <td class="sorting_1"></td>      <td contenteditable="true">&nbsp;</td>      <td></td>      <td></td>      <td></td>      <td></td>     </tr>');     
          tr.click(ifRowClicked);
@@ -123,7 +124,8 @@ block append scripts
            d.addClass("newCellRes");
          }
          $("#table_id tbody").prepend(tr);
-         state.isNewBeingCreated = !state.isNewBeingCreated;
+         state.isNewBeingCreated = true;
+        
        }
      }
      var ifRowClicked = function(e){
@@ -135,8 +137,8 @@ block append scripts
         if(toPost.length > 0){
           $.post("/createReservation", function(data){
             //if(data is not bad)
-            alert(data);
-            state.isNewBeingCreated = false;
+            //alert(data);
+            state.isNewBeingCreated = true;
           });
         } else if(toEdit.length > 0){
            // do stuff
