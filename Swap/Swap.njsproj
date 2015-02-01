@@ -33,6 +33,7 @@
   <ItemGroup>
     <Compile Include="app.js" />
     <Compile Include="public\javascripts\jquery.dataTables.js" />
+    <Compile Include="public\javascripts\user.js" />
     <Compile Include="routes\container.js" />
     <Compile Include="routes\dev.js" />
     <Compile Include="routes\user.js" />
