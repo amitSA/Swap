@@ -44,7 +44,7 @@ block append stylesheets
     }
 
     .newCellRes{
-      background-color : #FFFFCC !important;
+      background-color : #FFFFCC ;
       border-color : red;
       border-width : 1px;
       border-style : solid;
@@ -86,7 +86,15 @@ block append content
                   option(value="active") Active reservation
                   option(value="taken") Taken reservation
                   option(value="past") Past reservation
-              div#tableID 
+              div#tableID     
+                 table
+                    thead
+                       tr 
+                          th restauarant
+                          th date
+                          th time
+                          th guests
+                          th tdname
            div.tab-pane.active.fade#market
               div#tableID 
              
@@ -97,7 +105,9 @@ block append content
 
 
 block append scripts
+  script(src="/javascripts/temp.js")
   script(src="/javascripts/user.js")
+
 
     
       

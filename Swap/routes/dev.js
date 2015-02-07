@@ -52,6 +52,17 @@ module.exports = function (obj) {
     });
   });
 
+  //testing with arvind
+  app.post("/createReservation", function (req, res, next) {
+    res.send("Hello world!");
+  });
+  
+  app.post("/getStringTest", function (req, res, next) {
+    console.log(req.body.text);
+    res.send("Success");
+  });
+  
+
 }
 /*getting another instance of the tableSvc might cause extra overhead
 var azure = require("azure-storage");

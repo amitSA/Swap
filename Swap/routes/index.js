@@ -54,9 +54,6 @@ module.exports = function (obj) {
     res.redirect("/");
   });
 
-  app.post("/createReservation", function (req, res, next) {
-    res.send("Hello world!");
-  });
 
 
 }

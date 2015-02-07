@@ -32,7 +32,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="app.js" />
-    <Compile Include="public\javascripts\jquery.dataTables.js" />
+    <Compile Include="public\javascripts\lib\jquery.dataTables.js" />
+    <Compile Include="public\javascripts\temp.js" />
     <Compile Include="public\javascripts\user.js" />
     <Compile Include="routes\container.js" />
     <Compile Include="routes\dev.js" />
@@ -54,6 +55,7 @@
     <Folder Include="public\" />
     <Folder Include="public\images\" />
     <Folder Include="public\javascripts\" />
+    <Folder Include="public\javascripts\lib\" />
     <Folder Include="public\stylesheets\" />
     <Folder Include="routes\" />
     <Folder Include="views\" />
