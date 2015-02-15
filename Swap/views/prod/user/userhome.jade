@@ -13,7 +13,7 @@ block append stylesheets
     .pushtab{
       margin-left : 4%;
     }
-
+      
     .my-tabcontent{
       border-style: solid;
       border-color : rgb(23,55,94);
@@ -44,10 +44,18 @@ block append stylesheets
     }
 
     .newCellRes{
-      background-color : #FFFFCC ;
+      /*background-color : #FFFFCC ; */   
       border-color : red;
       border-width : 1px;
       border-style : solid;
+    }
+    .control-btn{
+      width : 40px;  /*25%*/
+      height : 40px; /*50%*/
+      margin-right : 5%;
+    }
+    .control-btn:hover {
+       -webkit-filter: hue-rotate(50deg);
     }
 
 
@@ -90,23 +98,27 @@ block append content
                  table
                     thead
                        tr 
-                          th restauarant
-                          th date
-                          th time
-                          th guests
-                          th tdname
+                          th Restaurant
+                          th Date
+                          th Time
+                          th Guests
+                          th Name
+                          th Controls
+                          
            div.tab-pane.active.fade#market
               div#tableID 
-             
-      
+  input.control-btn#save-btn(type="image",src="images/save.png",alt="Submit",hidden)
+  input.control-btn#delete-btn(type="image",src="images/delete.png",alt="Submit",hidden)    
         
-   
-      
+  
 
 
 block append scripts
-  script(src="/javascripts/temp.js")
+  //script(src="/javascripts/temp.js")
   script(src="/javascripts/user.js")
+      //USE ON CLICK FOR THE CONTROL BUTTONS
+
+
 
 
     

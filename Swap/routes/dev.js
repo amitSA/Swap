@@ -61,7 +61,8 @@ module.exports = function (obj) {
     console.log(req.body.text);
     res.send("Success");
   });
-  
+
+ 
 
 }
 /*getting another instance of the tableSvc might cause extra overhead

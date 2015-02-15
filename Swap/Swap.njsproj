@@ -41,6 +41,11 @@
     <Compile Include="routes\index.js" />
     <Compile Include="routes\oldcode.js" />
     <Content Include="package.json" />
+    <Content Include="public\images\save.png" />
+    <Content Include="public\images\sort_asc.png" />
+    <Content Include="public\images\sort_both.png" />
+    <Content Include="public\images\sort_desc.png" />
+    <Content Include="public\stylesheets\bootstrap.css.map" />
     <Content Include="public\stylesheets\jquery.dataTables.css" />
     <Content Include="README.md" />
     <Content Include="views\prod\user\userlayout.jade" />
