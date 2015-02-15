@@ -1,5 +1,7 @@
-﻿$(document).ready(function () {
-   $('div#tableID table').dataTable({
+﻿
+var marketTable = $("table#marketTable");
+$(document).ready(function () {
+   marketTable.dataTable({
       "aaData" : [["Happy's", "4/4/23", "4 pm", "5", "John","Controls"],   //SHOULD NUMBER OF GUESTS BE A NUMBER OR STRING
                   ["Lucky's", "2/12/23", "6 am", "1", "ImComing","Controls"],
                   ["FeelGoodHere", "12/7/23", "1 am", "10", "Not Sketch","Controls"],
@@ -15,6 +17,15 @@
        }]
       }     
    );      
+   marketTable.find("tbody tr:even").css({ "background-color" : "#99BFB8" });
+   marketTable.find("tbody tr:odd").css({ "background-color" : "#BCE7DF" });
+   marketTable.find("tbody tr").mouseover(function () {
+      $(this).css({ "-webkit-filter": "brightness(90%)" });
+   });
+   marketTable.find("tbody tr").mouseout(function () {
+      $(this).css({ "-webkit-filter": "brightness(100%)" });
+   });
+
    $("body").click(ifBodyClicked);   
 });
 
@@ -36,7 +47,7 @@ function makeNewRes() {
       d.attr("contentEditable", true);
       d.addClass("newCellRes");
     }
-    $("div#tableID table tbody").prepend(tr);
+    $("table#marketTable tbody").prepend(tr);
     state.isNewBeingCreated = true;
         
   }

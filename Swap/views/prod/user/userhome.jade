@@ -57,7 +57,7 @@ block append stylesheets
     .control-btn:hover {
        -webkit-filter: hue-rotate(50deg);
     }
-
+    
 
 block append content
   div.container-fluid
@@ -94,8 +94,8 @@ block append content
                   option(value="active") Active reservation
                   option(value="taken") Taken reservation
                   option(value="past") Past reservation
-              div#tableID     
-                 table
+              div#tableDiv     
+                 table#marketTable
                     thead
                        tr 
                           th Restaurant
@@ -106,7 +106,7 @@ block append content
                           th Controls
                           
            div.tab-pane.active.fade#market
-              div#tableID 
+              div#tableDiv 
   input.control-btn#save-btn(type="image",src="images/save.png",alt="Submit",hidden)
   input.control-btn#delete-btn(type="image",src="images/delete.png",alt="Submit",hidden)    
         
