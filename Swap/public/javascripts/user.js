@@ -18,9 +18,52 @@ $(document).ready(function () {
       }     
    );
 
-   
    $("body").click(ifBodyClicked);   
 });
+
+//delete later
+var state = { isNewBeingCreated : false };
+function change() {
+   var opt = $("#selectID option:selected");
+   alert(opt.attr("value"));
+}
+function makeNewRes() {
+   //$("#table_id tbody").prepend('<tr role="row" class="odd">      <td class="sorting_1"></td>      <td contenteditable="true">&nbsp;</td>      <td></td>      <td></td>      <td></td>      <td></td>     </tr>');
+   
+   if (!state.isNewBeingCreated) {
+      var tr = $('<tr id="#newItem" role="row" class="odd">      <td class="sorting_1"></td>      <td contenteditable="true">&nbsp;</td>      <td></td>      <td></td>      <td></td>      <td></td>     </tr>');
+      tr.click(ifRowClicked);
+      tr.addClass("newRes");
+      var arry = tr.children();
+      for (var i = 0; i < arry.length; i++) {
+         var d = $(arry[i]);
+         d.attr("contentEditable", true);
+         d.addClass("newCellRes");
+      }
+      $("table#marketTable tbody").prepend(tr);
+      state.isNewBeingCreated = true;
+        
+   }
+}
+var ifRowClicked = function (e) {
+   e.stopPropagation();
+}
+var ifBodyClicked = function () {
+   var toPost = $(".newRes");
+   var toEdit = $(".editedRes");
+   if (toPost.length > 0) {
+      $.post("/createReservation", function (data) {
+         //if(data is not bad)
+         //alert(data);
+         state.isNewBeingCreated = true;
+      });
+   } else if (toEdit.length > 0) {
+           // do stuff
+           //state of edited row should be turned to false
+   }
+      
+}
+//delete later
 
    
 
