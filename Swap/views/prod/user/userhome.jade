@@ -57,6 +57,17 @@ block append stylesheets
     .control-btn:hover {
        -webkit-filter: hue-rotate(50deg);
     }
+
+    table.dataTable tbody tr.even {
+       background-color : #E3EEEC;
+    }
+    table.dataTable tbody tr.odd {
+       background-color : #EBFAF7;
+    }
+    table.dataTable tbody tr:hover{
+       -webkit-filter: brightness(90%);
+    }
+
     
 
 block append content
@@ -107,6 +118,7 @@ block append content
                           
            div.tab-pane.active.fade#market
               div#tableDiv 
+
   input.control-btn#save-btn(type="image",src="images/save.png",alt="Submit",hidden)
   input.control-btn#delete-btn(type="image",src="images/delete.png",alt="Submit",hidden)    
         
