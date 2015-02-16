@@ -9,14 +9,27 @@ $(document).ready(function () {
                   ["Adventures of Nugget in a Biscuit", "2/1/23", "10 pm", "3", "AchmeddaBeast","Controls"]],
       "aoColumnDefs" : [
          {
-         "bSortable" : false,
-         "aTargets" : [-1],
-         "mRender" : function (val, type, fullRow) {
-            return getFullHtml(btnSave[0]) + getFullHtml(btnDelete[0])  ;  
+            "bSortable" : false,
+            "aTargets" : ["controls-col"],
+            "mRender" : function (val, type, fullRow) {
+               return getHtml(btnSave[0]) + getHtml(btnDelete[0]);  
+               }
+         },
+         {
+            "sWidth" : "20%",
+            "bSortable" : false,
+            "aTargets" : ["name-col"]
+         },
+         {
+            "sWidth" : "20%",
+            "aTargets" : ["res-col"]
+         },
+         {
+            "sWidth" : "10%",
+            "aTargets" : ["guests-col"]
          }
-       }]
-      }     
-   );
+      ]
+  });
 
    $("body").click(ifBodyClicked);   
 });
@@ -70,7 +83,7 @@ var ifBodyClicked = function () {
 
 
 
-function getFullHtml(obj) {
+function getHtml(obj) {
    var jqObj = $(obj).clone();
    return $("<div> </div>").append(jqObj).html();
 }
