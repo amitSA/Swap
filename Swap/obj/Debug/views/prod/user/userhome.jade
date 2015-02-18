@@ -67,7 +67,9 @@ block append stylesheets
        -webkit-filter: brightness(90%);
     }
     .my-outer{
-       border : 1px solid black;
+       border-width : 1px;
+       border-style : solid;
+       border-color : black;
        border-radius : 25px;
        padding : 3% 0% 3% 0%; 
        margin : 5% 0 7% 0;
@@ -81,15 +83,6 @@ block append stylesheets
     .mybtn{
        width : 25% ;
     }
-
-    .my-inner h4, .my-inner h3{
-       margin : 5px 0px 5px 0px;
-    }
-
-    #new-date, #new-time {
-       width : 40%;
-    }
-  
 
 block append content
    div.container-fluid
@@ -146,24 +139,18 @@ block append content
 
    div.container
    center 
-      div.my-outer#newResDiv()         
+      div.my-outer#newResDiv(hidden)         
          form(method="POST" )
-            div.my-inner(style="text-align:left")
+            div.my-inner
                div.form-group
                   label(for="new-now-date") 
                      h4 Today's Date : &nbsp 
-                  input#new-now-date(type="text",style="width:40%",readonly)
+                  input#new-now-date(type="text",readonly)
                div.form-group
-                  h3 Restaurant Info
-                  label(for="new-res-name")
-                     h4 Name : &nbsp 
-                  input#new-res-name(type="text")
-                  br
-                  label(for="new-res-pcode")
-                     h4 PostalCode : &nbsp
-                  input#new-res-pcode(type="text",style="width:44%")
-                   
-               div.form-group(style="margin:0px")
+                  label(for="new-res")
+                     h4 Restaurant Name : &nbsp #[]
+                  input#new-res(type="text") 
+               div.form-group
                   label(for="new-date")
                      h4 Date : &nbsp 
                   input#new-date(type="text") 
@@ -171,7 +158,7 @@ block append content
                   label(for="new-time")
                      h4 Time : &nbsp 
                   input#new-time(type="text") 
-               div.form-group
+               div
                   label(for="new-guests")
                      h4 Number of Guests : &nbsp 
                   select#new-guests(name="guest-num")
