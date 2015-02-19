@@ -4,12 +4,17 @@ module.exports = function (obj) {
    var userTable = cont.userTable;
    
    /*Any get route with "/home" will go through this, and this route handles the authentification 
-    So future routes dont have to check for it(authentification) */ 
+    So future get and post routes dont have to check for authentification */ 
    app.get(/^\/user.*/, cont.markLoginStatus, function (req, res, next) {
-    
       if (!req.isLoggedIn) {
          res.redirect("/");
          return;
+      }
+      next();
+   });
+   app.post(/^\/user.*/, cont.markLoginStatus, function (req, res, next) {
+      if (!req.isLoggedIn) {
+         res.send("Error: Client has not been authentificated yet");
       }
       next();
    });
@@ -20,41 +25,46 @@ module.exports = function (obj) {
          res.render("./prod/user/userhome", { name : result.name._ });
       });
    });
-   
-
+  
    app.post("/user/newres", function (req, res, next) {
+      console.log("reached top");
       var b = req.body;
       var length = -1;
-      /*RIGHTNOW, I AM QUERYING THE TABLE TO FIND HOW MANY ELEMENTS ARE CURRENTLY INSIDE IT, and 
-      then query.length can be the RowKey for the new reservation*/
+      /*Querying the table to find the num elements inside a partition.  Length of response object
+        is the new RowKey*/
       var query = new azure.TableQuery()
                   .where('PartitionKey eq ?', b.postalcode)
                   .select(["RowKey"]);
+      
       tableSvc.queryEntities('Market', query, null, function (error, result, response) {
-         if (!error){  // query was successful
-            length = result.entries.length+"";
-            console.log("querying worked, length: " + length);
+         if (!error){
+            length = result.entries.length;
+            var entry = {
+               "PartitionKey" : { "_" : b.postalcode },
+               "RowKey" : { "_" : length+"" },
+               "date" : { "_" : b.date },
+               "guestNum" : { "_" : b.guestNum },
+               "time" : { "_" : b.time },
+               "makerID" : { "_" : b.makerEmail },
+               "takerID" : {} //empty object means no-body has taken it yet!!!
+            }
+            insertEntries(entry);
+         } else {
+            res.send("Error : error in the initial querying");
          }
       });
-      //IF THERE WAS AN ASYNCHRONOUS queryEntities() method, I wouldnt have to do this!!!
-      while (length == -1) {
-         setTimeout(function () { }, 100);
+      
+     
+      var insertEntries = function (entry) {
+         tableSvc.insertEntity('Market', entry, function (error, result, response) {
+            if (!error) {
+               console.log("Sucess!!, entry has been inserted");
+               res.send("Sucess!!, entry has been inserted");
+            } else
+               res.send("Error in inserting entry");
+         });
       }
-
-      var entry = {
-         "PartitionKey" : { "_" : b.postalcode },
-         "RowKey" : { "_" : length },
-         "date" : { "_" : b.date },
-         "guestNum" : { "_" : b.guestNum },
-         "time" : { "_" : b.time },
-         "makerID" : { "_" : b.makerEmail },
-         "takerID" : {} //empty object means no-body has taken it yet!!!
-      };
-      console.log(entry.RowKey._);
-      /*tableSvc.insertEntity('Market', entry, function (error, result, response) {
-         if (!error)
-            console.log("Sucess!!!!, entry has been inserted");         
-      });*/
+      
    });
    
 
@@ -62,3 +72,9 @@ module.exports = function (obj) {
 
 }
 
+
+/*
+  var hold = -1;
+      setTimeout(function () { console.log("ehh"); }, 100);
+      //while (hold === -1) { }
+*/
