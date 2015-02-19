@@ -95,7 +95,7 @@ block append content
    div.container-fluid
       div.col-sm-2      
          a(href = "/")
-            img(src = "images/swaplogo.png", alt = "unloaded image").img-rounded.head-image
+            img(src = "/images/swaplogo.png", alt = "unloaded image").img-rounded.head-image
       div.col-sm-offset-1.col-sm-3
          h2 Welcome #{name}! 
       div.col-sm-offset-1.col-sm-5         
@@ -141,8 +141,8 @@ block append content
             div.tab-pane.active.fade#market
                div#tableDiv 
 
-   input.control-btn#save-btn(type="image",src="images/save.png",alt="Submit",hidden)
-   input.control-btn#delete-btn(type="image",src="images/delete.png",alt="Submit",hidden)    
+   input.control-btn#save-btn(type="image",src="/images/save.png",alt="Submit",hidden)
+   input.control-btn#delete-btn(type="image",src="/images/delete.png",alt="Submit",hidden)    
 
    div.container
    center 
@@ -157,24 +157,24 @@ block append content
                   h3 Restaurant Info
                   label(for="new-res-name")
                      h4 Name : &nbsp 
-                  input#new-res-name(type="text")
+                  input#new-res-name(type="text",name="resName")
                   br
                   label(for="new-res-pcode")
                      h4 PostalCode : &nbsp
-                  input#new-res-pcode(type="text",style="width:44%")
+                  input#new-res-pcode(type="text",name="postalcode",style="width:44%")
                    
                div.form-group(style="margin:0px")
                   label(for="new-date")
                      h4 Date : &nbsp 
-                  input#new-date(type="text") 
+                  input#new-date(type="text",name="date") 
                div.form-group
                   label(for="new-time")
                      h4 Time : &nbsp 
-                  input#new-time(type="text") 
+                  input#new-time(type="text",name="time") 
                div.form-group
                   label(for="new-guests")
                      h4 Number of Guests : &nbsp 
-                  select#new-guests(name="guest-num")
+                  select#new-guests(name="guestNum")
                      option(value = "1") 1
                //here we were going to add "name", but that part can be gotten from the user's profile
                   div

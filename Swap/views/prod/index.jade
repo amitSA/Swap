@@ -49,7 +49,7 @@ block append content
               div.signinform
                 div.tab-content
                    div.tab-pane.in.active.fade#login
-                      form(role="form", method = "GET" , action = "/login")
+                      form(role="form", method = "POST" , action = "/login")
                         div.form-group
                           label(for="login-email") Email
                           input#login-email.form-control(type="email", name="email" ,placeholder="Your email", required)

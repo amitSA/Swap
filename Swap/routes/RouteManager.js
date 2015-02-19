@@ -18,6 +18,15 @@ require("./dev.js")(obj);
 require("./index.js")(obj);
 require("./user.js")(obj);
 
+/*app.get(/\/(k{2}$)/, function (req, res, next) {
+   console.log("sdffsddfsdf");
+   res.send("YEAHHHHH");
+});
+
+app.get("/hello", function (req, res, next) {
+   console.log("i just helloed");
+});*/
+
 
 
 

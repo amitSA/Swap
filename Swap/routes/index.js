@@ -1,58 +1,60 @@
 ﻿
 
 module.exports = function (obj) {
-  var app = obj.app; var azure = obj.azure; var tableSvc = obj.tableSvc; var cont = obj.cont;
-  var userTable = cont.userTable;
+   var app = obj.app; var azure = obj.azure; var tableSvc = obj.tableSvc; var cont = obj.cont;
+   var userTable = cont.userTable;
 
-  app.get("/", cont.markLoginStatus, function (req, res, next) {
-    if (req.isLoggedIn)
-      res.redirect("/home");
-    res.render("./prod/index");
-  });
+   app.get("/", cont.markLoginStatus, function (req, res, next) {
+      if (req.isLoggedIn)
+         res.redirect("/home");
+      
+      res.render("./prod/index");
+    
+   });
   
-  app.get("/login", function (req, res, next) {
+   app.post("/login", function (req, res, next) {
     
-    var email = req.query.email;
-    
-    tableSvc.retrieveEntity(userTable, email, "userinfo", function (error, result, response) {
-      if (error) {
-        console.log("error in index.js : \"login\" get route");
-        return; //INSTEAD RENDER AN ERROR PAGE
-      }
-      if (result.email._ === email) {
-        req.session["email-sess"] = email;
-        res.redirect("/home");
-      } else {
+      var email = req.body.email;
+      tableSvc.retrieveEntity(userTable, email, "userinfo", function (error, result, response) {
+         if (error) {
+            console.log("error in index.js : \"login\" get route");
+            return; //INSTEAD RENDER AN ERROR PAGE
+         }
+         if (result.email._ === email) {
+            req.session["email-sess"] = email;
+            res.redirect("/user/home");
+         } else {
         //DISPLAY ERROR MESSAGE IN INDEX.JADE (a red error box ontop of the login tabs saying that a user w/ that email doesnt exist)
           //THIS CAN BE DONE BY INJECTING A JS OBJECT INTO A JADE FILE(it can be a boolean representing whether login was succesful or not)
-      }
-    });
-  });
+         }
+      });
+   });
   
   /*We want every user to have their own paritition key, so partition keys will
   always be a users email since all emails are unique*/
-  app.post("/newuser", function (req, res, next) {
-    var b = req.body;
-    console.log("the name is : " + b.userName);
-    var entry = {
-      PartitionKey: { "_": b.email }, 
-      RowKey: { "_": "userinfo" },
-      email: { "_": b.email }, 
-      name: { "_": b.userName }
-    };
-    tableSvc.insertEntity(userTable, entry, function (error, result, response) {
-      if (error)
-        console.log("error in /newuser request :" + error);
+   app.post("/newuser", function (req, res, next) {
+      var b = req.body;
+      console.log("the name is : " + b.userName);
+      var entry = {
+         PartitionKey: { "_": b.email }, 
+         RowKey: { "_": "userinfo" },
+         email: { "_": b.email }, 
+         name: { "_": b.userName }
+      };
+      tableSvc.insertEntity(userTable, entry, function (error, result, response) {
+         if (error)
+            console.log("error in /newuser request :" + error);
       
-      res.render("./prod/index"); //regardless if there was an error or not, render index.jade again
-    });
-  });
+         res.render("./prod/index"); //regardless if there was an error or not, render index.jade again
+      });
+   });
   
-  app.get("/logout", cont.markLoginStatus , function (req, res, next) {
-    if (req.isLoggedIn)
-      req.session.destroy()
-    res.redirect("/");
-  });
+   app.get("/logout", cont.markLoginStatus , function (req, res, next) {
+      if (req.isLoggedIn)
+         req.session.destroy()
+      res.redirect("/");
+   });
+
 
 
 
