@@ -15,6 +15,7 @@ module.exports = function (obj) {
    app.post(/^\/user.*/, cont.markLoginStatus, function (req, res, next) {
       if (!req.isLoggedIn) {
          res.send("Error: Client has not been authentificated yet");
+         return;
       }
       next();
    });
@@ -22,31 +23,30 @@ module.exports = function (obj) {
    app.get("/user/home", function (req, res, next) {
       var email = req.session["email-sess"];
       tableSvc.retrieveEntity(userTable, email, "userinfo", function (error, result, response) {
-         res.render("./prod/user/userhome", { name : result.name._ });
+         res.render("./prod/user/userhome", { insData : { name : result.name._ , userEmail : result.email._ } });
       });
    });
   
    app.post("/user/newres", function (req, res, next) {
-      console.log("reached top");
       var b = req.body;
-      var length = -1;
       /*Querying the table to find the num elements inside a partition.  Length of response object
         is the new RowKey*/
       var query = new azure.TableQuery()
-                  .where('PartitionKey eq ?', b.postalcode)
+                  .where('PartitionKey eq ?', b.postalCode)
                   .select(["RowKey"]);
       
       tableSvc.queryEntities('Market', query, null, function (error, result, response) {
          if (!error){
-            length = result.entries.length;
+            var length = result.entries.length;
             var entry = {
-               "PartitionKey" : { "_" : b.postalcode },
-               "RowKey" : { "_" : length+"" },
+               "PartitionKey" : { "_" : b.postalCode },
+               "RowKey" : { "_" : length + ""},  //IS THE "" NECESSARY
+               "resName" : {"_" : b.resName},
                "date" : { "_" : b.date },
                "guestNum" : { "_" : b.guestNum },
                "time" : { "_" : b.time },
                "makerID" : { "_" : b.makerEmail },
-               "takerID" : {} //empty object means no-body has taken it yet!!!
+               "takerID" : {} //empty takerID object means no-body has taken it yet!!!
             }
             insertEntries(entry);
          } else {
@@ -68,13 +68,6 @@ module.exports = function (obj) {
    });
    
 
-   //HOW TO CHECK IF A USER IS ALWAYS LOGGED IN...right onw
-
 }
 
 
-/*
-  var hold = -1;
-      setTimeout(function () { console.log("ehh"); }, 100);
-      //while (hold === -1) { }
-*/

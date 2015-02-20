@@ -1,5 +1,4 @@
-﻿
-var marketTable = $("table#marketTable");
+﻿var marketTable = $("table#marketTable");
 $(document).ready(function () {
    marketTable.dataTable({  //WE MIGHT HAVE TO USE MDATA WHEN DOING SERVER SIDE PROCESSING
       "aaData" : [["Today","Happy's", "4/4/23", "4 pm", "5", "John","Controls"],   //SHOULD NUMBER OF GUESTS BE A NUMBER OR STRING
@@ -37,10 +36,8 @@ $(document).ready(function () {
       dd = "0" + d;
    if (mm < 10)
       mm = "0" + mm;
-   //mm + '/' + dd + '/' + yyyy
    $("#new-now-date").val(mm + '/' + dd + '/' + yyyy);
-      //HERE : SET THE INPUT TO READONLY
-
+ 
    //This is for creating multiple option elements for guests
    var select = $("select#new-guests");
    var toClone = select.children();
@@ -52,12 +49,38 @@ $(document).ready(function () {
 });
 
 function newResLinkClicked() {
-   $("#newResDiv").removeAttr("hidden");    
+   $("#newResDiv").show(1000);    
 }
 
 //YOUR OPTIONS : either redraw the table now...or modify it clientside with the same data being pushed to database
-function resSubmited() {
+function addResButtonClicked() {
+   var dataToPush = {
+      "postalCode" : $("#new-rest-pcode").val(),
+      "restName" : $("#new-rest-name").val(), 
+      "date" : $("#new-date").val(),
+      "guestNum" : $("select#new-guests option:selected").val(),
+      "time" : $("#new-time").val(),
+      "makerEmail" : insData.email
+      //"takerID" - this field is handled by route(initialized to be an empty object)
+   };
+  
+   $.ajax({
+      type: "POST",
+      url: "/user/newres",
+      data: dataToPush,
+      success: function (data) {
+         alert(data);
+      }
+   }).fail(function () {
+      alert("Ajax post in user.js failed");
+   });
+   $("#newResDiv").hide(500);
    
+   //defaulting values for the input and select tags
+   $("div.my-inner").find("input:not(#new-now-date)").each(function (index,ele) {
+      $(ele).val("");
+   });
+   $("select#new-guests").val("1");
 }
 
 

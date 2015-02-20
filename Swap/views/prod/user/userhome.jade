@@ -97,7 +97,7 @@ block append content
          a(href = "/")
             img(src = "/images/swaplogo.png", alt = "unloaded image").img-rounded.head-image
       div.col-sm-offset-1.col-sm-3
-         h2 Welcome #{name}! 
+         h2 Welcome #{insData.name}! 
       div.col-sm-offset-1.col-sm-5         
          div.navbar.navbar-default(role="navigation")
             div.container-fluid
@@ -146,8 +146,7 @@ block append content
 
    div.container
    center 
-      div.my-outer#newResDiv()         
-         form(method="POST" )
+      div.my-outer#newResDiv(style="display:none")         
             div.my-inner(style="text-align:left")
                div.form-group
                   label(for="new-now-date") 
@@ -155,13 +154,13 @@ block append content
                   input#new-now-date(type="text",style="width:40%",readonly)
                div.form-group
                   h3 Restaurant Info
-                  label(for="new-res-name")
+                  label(for="new-rest-name")
                      h4 Name : &nbsp 
-                  input#new-res-name(type="text",name="resName")
+                  input#new-rest-name(type="text",name="resName")
                   br
-                  label(for="new-res-pcode")
+                  label(for="new-rest-pcode")
                      h4 PostalCode : &nbsp
-                  input#new-res-pcode(type="text",name="postalcode",style="width:44%")
+                  input#new-rest-pcode(type="text",name="postalcode",style="width:44%")
                    
                div.form-group(style="margin:0px")
                   label(for="new-date")
@@ -182,7 +181,7 @@ block append content
                         h4 Your Name : &nbsp
             br 
             br
-            button.btn.btn-primary.btn-lg.mybtn(type="submit", onclick="resSubmited()") Submit
+            button.btn.btn-primary.btn-lg.mybtn( onclick="addResButtonClicked()") Submit
          
 
       
@@ -190,8 +189,10 @@ block append content
 
 
 block append scripts
-  //script(src="/javascripts/temp.js")
-  script(src="/javascripts/user.js")
+   //script(src="/javascripts/temp.js")
+   script.
+      var insData = !{JSON.stringify(insData)};
+   script(src="/javascripts/user.js")
       //USE ON CLICK FOR THE CONTROL BUTTONS
 
 
