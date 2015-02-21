@@ -54,6 +54,19 @@ function newResLinkClicked() {
 
 //YOUR OPTIONS : either redraw the table now...or modify it clientside with the same data being pushed to database
 function addResButtonClicked() {
+   //IMPLEMENT A WAY TO CHECK IF THESE ENTRIES ARE ATLEAST FILLED IN ANO NOT EMPTY
+   var uInputs = $(".my-inner").find("input:not(#new-now-date)");
+   $(".my-inner").find(".error-message").remove();
+   for (var i = 0; i < uInputs.length; i++) {
+      var inp = $(uInputs[i]);
+      if (inp.val() === "") {
+         var p = $("<p>This field must be filled in!</p>").css({ "color" : "red", "display": "inline-block" }).
+         addClass("error-message");
+         inp.after(p);
+         return;
+      }
+   }
+
    var dataToPush = {
       "postalCode" : $("#new-rest-pcode").val(),
       "restName" : $("#new-rest-name").val(), 
@@ -77,7 +90,7 @@ function addResButtonClicked() {
    $("#newResDiv").hide(500);
    
    //defaulting values for the input and select tags
-   $("div.my-inner").find("input:not(#new-now-date)").each(function (index,ele) {
+   uInputs.each(function (index,ele) {
       $(ele).val("");
    });
    $("select#new-guests").val("1");

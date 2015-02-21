@@ -86,8 +86,8 @@ block append stylesheets
        margin : 5px 0px 5px 0px;
     }
 
-    #new-date, #new-time {
-       width : 40%;
+    #new-date, #new-time, #new-rest-pcode {
+       width : 100px;
     }
   
 
@@ -151,7 +151,7 @@ block append content
                div.form-group
                   label(for="new-now-date") 
                      h4 Today's Date : &nbsp 
-                  input#new-now-date(type="text",style="width:40%",readonly)
+                  input#new-now-date(type="text",style="width:100px",readonly)
                div.form-group
                   h3 Restaurant Info
                   label(for="new-rest-name")
@@ -160,7 +160,8 @@ block append content
                   br
                   label(for="new-rest-pcode")
                      h4 PostalCode : &nbsp
-                  input#new-rest-pcode(type="text",name="postalcode",style="width:44%")
+                  input#new-rest-pcode(type="text",name="postalcode")
+                  
                    
                div.form-group(style="margin:0px")
                   label(for="new-date")
