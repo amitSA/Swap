@@ -70,11 +70,12 @@ function addResButtonClicked() {
    var dataToPush = {
       "postalCode" : $("#new-rest-pcode").val(),
       "restName" : $("#new-rest-name").val(), 
-      "date" : $("#new-date").val(),
+      "dateEnd" : $("#new-end-date").val(),
       "guestNum" : $("select#new-guests option:selected").val(),
       "time" : $("#new-time").val(),
-      "makerEmail" : insData.email
+      "makerID" : insData.email
       //"takerID" - this field is handled by route(initialized to be an empty object)
+      //"dateAdded" - property automatically added as the "TimeStamp"
    };
   
    $.ajax({
@@ -82,7 +83,7 @@ function addResButtonClicked() {
       url: "/user/newres",
       data: dataToPush,
       success: function (data) {
-         alert(data);
+         //alert(data); alert will only appear in failure
       }
    }).fail(function () {
       alert("Ajax post in user.js failed");
@@ -94,6 +95,10 @@ function addResButtonClicked() {
       $(ele).val("");
    });
    $("select#new-guests").val("1");
+
+   //adding data into Table
+      //makerUserName can be pased into the jade
+      //dateAdded can be an actual date object
 }
 
 

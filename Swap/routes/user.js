@@ -41,20 +41,19 @@ module.exports = function (obj) {
             var entry = {
                "PartitionKey" : { "_" : b.postalCode },
                "RowKey" : { "_" : length + ""},  //IS THE "" NECESSARY
-               "resName" : {"_" : b.resName},
-               "date" : { "_" : b.date },
+               "restName" : {"_" : b.restName},
+               "dateEnd" : { "_" : b.dateEnd },
                "guestNum" : { "_" : b.guestNum },
                "time" : { "_" : b.time },
-               "makerID" : { "_" : b.makerEmail },
+               "makerID" : { "_" : b.makerID },
                "takerID" : {} //empty takerID object means no-body has taken it yet!!!
+               //dateAdded - this is automatically created timestamp
             }
             insertEntries(entry);
          } else {
             res.send("Error : error in the initial querying");
          }
       });
-      
-     
       var insertEntries = function (entry) {
          tableSvc.insertEntity('Market', entry, function (error, result, response) {
             if (!error) {
@@ -64,7 +63,19 @@ module.exports = function (obj) {
                res.send("Error in inserting entry");
          });
       }
-      
+   });
+   
+   /*the name of fields stored in the database should be the same names as what the 
+   datatables was intialized with in clientside user.js*/ 
+   app.get("/querydata", function (req, res, next) {
+      var query = new azure.TableQuery().
+         where("email == ?", "sharvind@gmail.com");
+      tableSvc.queryEntities('UserTable', query, null, function (error, result, response) {
+         if (!error) { // query was successful
+            res.send("<pre>" + JSON.stringify(result.entries,null,"  ") + "</pre>");
+         }
+      });
+
    });
    
 

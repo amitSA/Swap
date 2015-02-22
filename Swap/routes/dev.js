@@ -42,13 +42,13 @@ module.exports = function (obj) {
   
   app.get("/dev/:tableName", function (req, res, next) {
     var query = new azure.TableQuery();
-    
-    tableSvc.queryEntities(req.params.tableName, query, null, function (error, result, response) {
+    var tableName = req.params.tableName;
+    tableSvc.queryEntities(tableName, query, null, function (error, result, response) {
       if (error) {
         console.log("error in /users request");
         return;
       }
-      res.render("./dev/all-users", { entries: result.entries });
+      res.render("./dev/table-contents", { insData : {entries: result.entries, tableName : tableName}});
     });
   });
 
@@ -63,6 +63,27 @@ module.exports = function (obj) {
   });
 
  
+   app.post("/dev/:tableName/delete-elements", function (req, res, next) {
+      var tableName = req.params.tableName;
+      var aoEntities = req.body.entities;
+      
+      function recursion(index) {
+         if (index > aoEntities.length - 1) return;
+         console.log("index: " + index);
+         tableSvc.deleteEntity(tableName, aoEntities[index], function (error, response) {
+            if (error)
+               res.send("Error Encountered");
+            else {
+               //console.log("index : " + index);
+               recursion(index+1);
+            }
+         });
+      }
+      recursion(0);
+      res.send("Entries Deleted Succesfully");
+   });
+
+
 
 }
 /*getting another instance of the tableSvc might cause extra overhead

@@ -1,0 +1,87 @@
+﻿extends ../layout
+
+
+block append stylesheets
+   style.
+      .container {
+         margin-top : 20px; 
+      }   
+      .my-btn{
+         margin-bottom : 20px;
+         margin-left : 10px;
+         
+      }
+
+
+block content
+   div.container
+      button.btn.btn-primary.my-btn(onclick="toggleAll()") Toggle All
+      button.btn.btn-danger.my-btn(onclick="deleteSelected()") Delete Selected
+      br
+      p #{insData.entries.length} Entries Showing
+      div.contents
+         div.checkbox
+            label
+               input(type="checkbox")
+            
+
+block append scripts
+   script(type="text/javascript").  
+      var insData = !{JSON.stringify(insData)}; 
+      $(document).ready(function () {
+         var toClone = $(".contents .checkbox").clone();
+         $(".contents :nth-child(1)").remove();
+         var entries = insData.entries  
+         var list = $("<ol></ol>");
+         var i = 0;
+         for (; i < entries.length; i++) {
+            var entry = entries[i];
+            var keys = Object.keys(entry);
+            var nestList = $("<ul></ul>");
+            for(var ip = 0;ip<keys.length;ip++){
+               nestList.append("<li>" + keys[ip] + ":" + entry[keys[ip]]._ + "</li>");
+            }
+            var checkbox = toClone.clone();
+            checkbox.find("input").after(nestList);
+            $(".contents").append(checkbox);   
+         }      
+         
+      });
+      function toggleAll(){
+         $("input").each(function(index,value){
+            var bool = !($(value).prop("checked"));
+            $(value).prop("checked",bool);
+         });
+      }
+
+      function deleteSelected(){
+         var array = [];
+         $(".checkbox").each(function(index,value){
+            value = $(value);
+            if(value.find("input:checked").length > 0){
+               var obj = {};
+               var str1 = value.find("li:nth-child(1)").html();
+               var ind1 = str1.indexOf(":");
+               var str2 = value.find("li:nth-child(2)").html();
+               var ind2 = str2.indexOf(":");
+               obj.PartitionKey = {"_":str1.substring(ind1+1)};
+               obj.RowKey = {"_":str2.substring(ind2+1)};
+               array.push(obj);
+               
+            }
+         });
+      
+         $.ajax({
+         type: "POST",
+         url: "/dev/"+insData.tableName+"/delete-elements",
+         data: {entities : array},
+         success: function (data) {
+            alert(data);
+            setTimeout(function(){location.reload()},1000);
+         }}).fail(function () {
+            alert("Ajax post in table-contents.jade failed");
+         });
+         //remember to push tableName
+      }
+      
+

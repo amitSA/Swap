@@ -86,7 +86,7 @@ block append stylesheets
        margin : 5px 0px 5px 0px;
     }
 
-    #new-date, #new-time, #new-rest-pcode {
+    #new-end-date, #new-time, #new-rest-pcode {
        width : 100px;
     }
   
@@ -164,9 +164,9 @@ block append content
                   
                    
                div.form-group(style="margin:0px")
-                  label(for="new-date")
+                  label(for="new-end-date")
                      h4 Date : &nbsp 
-                  input#new-date(type="text",name="date") 
+                  input#new-end-date(type="text",name="date") 
                div.form-group
                   label(for="new-time")
                      h4 Time : &nbsp 
@@ -193,7 +193,7 @@ block append scripts
    //script(src="/javascripts/temp.js")
    script.
       var insData = !{JSON.stringify(insData)};
-   script(src="/javascripts/user.js")
+   script(src="/javascripts/userhome.js")
       //USE ON CLICK FOR THE CONTROL BUTTONS
 
 
