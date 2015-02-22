@@ -12,12 +12,13 @@ block append stylesheets
       padding: 10px 5px 5px 5px;
     }
 
+
 block content
   div.container
     div.col-xs-offset-3.col-xs-6.buttonHolder
       div.inline-block
         div.col-xs-6
-          button.btn.btn-primary.btn-lg.btn-block#AddButton
+          button.btn.btn-primary.btn-lg.btn-block#add-button
             | Add Table
           div.dropdown
             form(role ="form", method="POST", action="/dev/newtable")
@@ -28,8 +29,8 @@ block content
                 button.btn.btn-default(type="submit") 
                   | Add
         div.col-xs-6
-          button.btn.btn-success.btn-lg.btn-block#DeleteButton
-            | Delete Table
+          button.btn.btn-success.btn-lg.btn-block#view-button
+            | View Table
           div.dropdown#DeleteDropDown
             form(role="form", method="POST", action="/dev/deletetbl")
               input(type="hidden" name="_method" value="DELETE")  
@@ -46,7 +47,7 @@ block content
 block append scripts
   script(type="text/javascript").
      $(document).ready(function(){
-         $("#AddButton,#DeleteButton").click(function(){
+         $("#add-button,#view-button").click(function(){
             var jumbo = $(this).next();
             jumbo.slideToggle(400);
          });
@@ -57,14 +58,18 @@ block append scripts
          var tables = !{JSON.stringify(tables)};
          var sup = $("div.dropdown#DeleteDropDown").find("div.form-group#tableList");
            
-         for(var i = 0;i<tables.length;i++)  { 
+         for(var i = 0;i<tables.length;i++)  {
+           var tName = tables[i];
+           var a = $("<a></a>").attr({"href":"/dev/"+tName,"target":"_tab"}).html(tName);
+      
            var toAdd = '<div class="checkbox"> \
                             <label> \
                               <input type="checkbox" name="'+count+'"value="'+tables[i]+'"> \
-                                '+tables[i]+' \
                               </input> \
                             </label> \
                           </div>';
+           toAdd = $(toAdd);
+           toAdd.find("label").append(a);
            sup.append(toAdd);
            count++; // move this into the for-loop header
          }

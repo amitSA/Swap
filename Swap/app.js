@@ -1,6 +1,8 @@
-﻿
-/**
- * Module dependencies.
+﻿/*!
+ * Swap
+ * https://github.com/amitSA/Swap
+ *
+ * Copyright 2014-2015 Amit Saxena
  */
 
 var express = require('express');
