@@ -126,8 +126,7 @@ block append content
                   option(value="active") Active reservation
                   option(value="taken") Taken reservation
                   option(value="past") Past reservation
-               div#tableDiv     
-                  table#marketTable
+               table#myResTable
                      thead
                         tr 
                            th.dt-added-col Date Added
@@ -139,7 +138,8 @@ block append content
                            th.controls-col Controls
                           
             div.tab-pane.active.fade#market
-               div#tableDiv 
+               table#marketTable
+                  
 
    input.control-btn#save-btn(type="image",src="/images/save.png",alt="Submit",hidden)
    input.control-btn#delete-btn(type="image",src="/images/delete.png",alt="Submit",hidden)    

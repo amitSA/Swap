@@ -1,6 +1,6 @@
-﻿var marketTable = $("table#marketTable");
+﻿var myResTable = $("table#myResTable");
 $(document).ready(function () {
-   marketTable.dataTable({  //WE MIGHT HAVE TO USE MDATA WHEN DOING SERVER SIDE PROCESSING
+   myResTable.dataTable({  //WE MIGHT HAVE TO USE MDATA WHEN DOING SERVER SIDE PROCESSING
       "aaData" : [["Today","Happy's", "4/4/23", "4 pm", "5", "John","Controls"],   //SHOULD NUMBER OF GUESTS BE A NUMBER OR STRING
                   ["Tomrrw","Lucky's", "2/12/23", "6 am", "1", "ImComing","Controls"],
                   ["Yestday","FeelGoodHere", "12/7/23", "1 am", "10", "Not Sketch","Controls"],
@@ -27,7 +27,7 @@ $(document).ready(function () {
          }
       ]
   });   
-   marketTable.css({ "width" : "100%" });
+   myResTable.css({ "width" : "100%" });
 
    //This is for adding today's date
    var dNow = new Date();
@@ -67,13 +67,14 @@ function addResButtonClicked() {
       }
    }
    var dataToPush = {
-      "postalCode" : $("#new-rest-pcode").val(),
-      "restName" : $("#new-rest-name").val(), 
-      "dateEnd" : $("#new-end-date").val(),
-      "guestNum" : $("select#new-guests option:selected").val(),
-      "time" : $("#new-time").val(),
-      "makerID" : insData.userID
-      //"takerID" - this field is handled by route(initialized to be an empty object)
+      "PartitionKey" : { "_" : $("#new-rest-pcode").val() },
+      "RowKey" : {"_" : ""}, //handled by the route
+      "restName" : {"_" : $("#new-rest-name").val()}, 
+      "dateEnd" : { "_" : $("#new-end-date").val() },
+      "guestNum" : {"_" : $("select#new-guests option:selected").val()},
+      "time" : { "_" : $("#new-time").val() },
+      "makerID" : {"_" : insData.userID},
+      "takerID" : "" //WORK HERE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
       //"dateAdded" - property automatically added as the "TimeStamp"
    };
    

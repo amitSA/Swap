@@ -48,7 +48,7 @@ module.exports = function (obj) {
                "guestNum" : { "_" : b.guestNum },
                "time" : { "_" : b.time },
                "makerID" : { "_" : b.makerID },
-               "takerID" : {} //empty takerID object means no-body has taken it yet!!!
+               "takerID" : {"_" : ""} //empty takerID object means no-body has taken it yet!!!
                //dateAdded - this is automatically created timestamp
             } 
             console.log(b.makerID);
