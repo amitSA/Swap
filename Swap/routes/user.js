@@ -11,10 +11,10 @@ module.exports = function (obj) {
          return;
       }
       next();
-   });
+   });  
    app.post(/^\/user.*/, cont.markLoginStatus, function (req, res, next) {
       if (!req.isLoggedIn) {
-         res.send("Error: Client has not been authentificated yet");
+         res.send(401,"Error: Client has not been authentificated yet");
          return;
       }
       next();
@@ -23,10 +23,12 @@ module.exports = function (obj) {
    app.get("/user/home", function (req, res, next) {
       var email = req.session["email-sess"];
       tableSvc.retrieveEntity(userTable, email, "userinfo", function (error, result, response) {
-         res.render("./prod/user/userhome", { insData : { name : result.name._ , userEmail : result.email._ } });
+         res.render("./prod/user/userhome", { insData : { name : result.name._ , userID : result.email._ } });
       });
    });
-  
+   
+   /*the name of fields stored in the database should be the same names as what the 
+   datatables was intialized with in clientside user.js*/ 
    app.post("/user/newres", function (req, res, next) {
       var b = req.body;
       /*Querying the table to find the num elements inside a partition.  Length of response object
@@ -34,7 +36,7 @@ module.exports = function (obj) {
       var query = new azure.TableQuery()
                   .where('PartitionKey eq ?', b.postalCode)
                   .select(["RowKey"]);
-      
+       
       tableSvc.queryEntities('Market', query, null, function (error, result, response) {
          if (!error){
             var length = result.entries.length;
@@ -48,7 +50,8 @@ module.exports = function (obj) {
                "makerID" : { "_" : b.makerID },
                "takerID" : {} //empty takerID object means no-body has taken it yet!!!
                //dateAdded - this is automatically created timestamp
-            }
+            } 
+            console.log(b.makerID);
             insertEntries(entry);
          } else {
             res.send("Error : error in the initial querying");
@@ -65,18 +68,8 @@ module.exports = function (obj) {
       }
    });
    
-   /*the name of fields stored in the database should be the same names as what the 
-   datatables was intialized with in clientside user.js*/ 
-   app.get("/querydata", function (req, res, next) {
-      var query = new azure.TableQuery().
-         where("email == ?", "sharvind@gmail.com");
-      tableSvc.queryEntities('UserTable', query, null, function (error, result, response) {
-         if (!error) { // query was successful
-            res.send("<pre>" + JSON.stringify(result.entries,null,"  ") + "</pre>");
-         }
-      });
-
-   });
+  
+   
    
 
 }

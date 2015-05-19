@@ -42,3 +42,15 @@ setInterval(cb, 1);
 */
 
 
+app.get("/querydata", function (req, res, next) {
+   var query = new azure.TableQuery().
+         where("email == ?", "sharvind@gmail.com");
+   tableSvc.queryEntities('UserTable', query, null, function (error, result, response) {
+      if (!error)
+      {
+ // query was successful
+         res.send("<pre>" + JSON.stringify(result.entries, null, "  ") + "</pre>");
+      }
+   });
+
+});

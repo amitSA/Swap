@@ -52,21 +52,12 @@ module.exports = function (obj) {
     });
   });
 
-  //testing with arvind
-  app.post("/createReservation", function (req, res, next) {
-    res.send("Hello world!");
-  });
-  
-  app.post("/getStringTest", function (req, res, next) {
-    console.log(req.body.text);
-    res.send("Success");
-  });
-
  
    app.post("/dev/:tableName/delete-elements", function (req, res, next) {
       var tableName = req.params.tableName;
       var aoEntities = req.body.entities;
-      
+
+      //Used recursion to force table calls to execute linearly.  Did not work, table calls still happend synchronously
       function recursion(index) {
          if (index > aoEntities.length - 1) return;
          console.log("index: " + index);
@@ -84,6 +75,16 @@ module.exports = function (obj) {
    });
 
 
+   
+   //testing with arvind
+   app.post("/createReservation", function (req, res, next) {
+      res.send("Hello world!");
+   });
+   
+   app.post("/getStringTest", function (req, res, next) {
+      console.log(req.body.text);
+      res.send("Success");
+   });
 
 }
 /*getting another instance of the tableSvc might cause extra overhead

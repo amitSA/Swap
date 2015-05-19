@@ -66,27 +66,24 @@ function addResButtonClicked() {
          return;
       }
    }
-
    var dataToPush = {
       "postalCode" : $("#new-rest-pcode").val(),
       "restName" : $("#new-rest-name").val(), 
       "dateEnd" : $("#new-end-date").val(),
       "guestNum" : $("select#new-guests option:selected").val(),
       "time" : $("#new-time").val(),
-      "makerID" : insData.email
+      "makerID" : insData.userID
       //"takerID" - this field is handled by route(initialized to be an empty object)
       //"dateAdded" - property automatically added as the "TimeStamp"
    };
-  
+   
    $.ajax({
       type: "POST",
       url: "/user/newres",
       data: dataToPush,
-      success: function (data) {
-         //alert(data); alert will only appear in failure
+      error : function (jq) {
+         alert(jq.responseText);
       }
-   }).fail(function () {
-      alert("Ajax post in user.js failed");
    });
    $("#newResDiv").hide(500);
    

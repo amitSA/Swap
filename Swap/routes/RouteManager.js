@@ -4,7 +4,7 @@ This file manages all the routes for the website's server
 
 var app = require("../app");
 var azure = require("azure-storage");
-var tableSvc = azure.createTableService("swaptest", "ehvVsFMeJjcr4AaLEWH7Fp2fLOvcdFySI8LVXCqZo4YLJ53R5jrEZOll/RzPv1MX1RWi7e+xsu8gQTNmpO1Bpw==");
+var tableSvc = azure.createTableService("swaptest", "G6krSLr6kRDZXlwqiD1OVYtls8bwd7gq/AwdksiZiAkeq0fxh0yIRIOJhTNlZoNXZpZRAdi+Xrhw6TSCHOlrvw==");
 var cont = require("./container.js");
 
 var obj = {
